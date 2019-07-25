@@ -9,7 +9,7 @@ export class Navbar extends React.Component {
 					<Link to="/usuarios">
 						<span className="py-2 d-none d-md-inline-block">usuario</span>
 					</Link>
-					<Link to="/">
+					<Link to="/grupo">
 						<span className="py-2 d-none d-md-inline-block">grupo</span>
 					</Link>
 					<Link to="/">
