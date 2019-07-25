@@ -40,7 +40,7 @@ export class Usuarios extends Component {
 										type="text"
 										className="form-control"
 										id="validationDefault02"
-										placeholder="+569 6666 6666"
+										placeholder="26/03/2019"
 									/>
 									<label htmlFor="validationDefault02">Contraseña</label>
 									<input
