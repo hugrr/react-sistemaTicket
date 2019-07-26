@@ -1,39 +1,39 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import Contact, ContactSerializer
+from api.models import Miembro, MiembroSerializer
 
 from rest_framework.permissions import IsAuthenticated
 """
 The ContactsView will contain the logic on how to:
  GET, POST, PUT or delete the contacts
 """
-class ContactsView(APIView):
+
+class MiembroView(APIView):
     permission_classes = (IsAuthenticated,)
-    def get(self, request, contact_id=None):
+    def get(self, request,):
+       # userid = 1
+        todos = Miembro.objects.filter(user_id=request.user.id)
+        serializer = MiembroSerializer(todos, many=False)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        if contact_id is not None:
-            contact = Contact.objects.get(id=contact_id)
-            serializer = ContactSerializer(contact, many=False)
-            return Response(serializer.data)
-        else:
-            contacts = Contact.objects.all()
-            serializer = ContactSerializer(contacts, many=True)
-            return Response(serializer.data)
-
-    def post(self, request):
-
-        serializer = ContactSerializer(data=request.data)
+    def post(self, request,):
+        peo = request.data
+        peo['user_id','grupoid'] = request.user.id
+        serializer = MiembroSerializer(data=peo)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-    def delete(self, request, contact_id):
-
-        contact = Contact.objects.get(id=contact_id)
-        contact.delete()
-
+    def delete(self, request, userAccount):
+        Miembro.objects.filter(userAccount=userAccount).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    def put(self, request, userAccount):
+        todo = Miembro.objects.filter(userAccount=userAccount, id=request.data['id']).first()
+        serializer = MiembroSerializer(Miembro, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

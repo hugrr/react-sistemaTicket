@@ -3,27 +3,24 @@ All your application modules and serializers are going to be declared inside thi
 """
 from rest_framework import serializers
 from django.db import models
-
+from django.contrib.auth.models import User
 """
 Define he Contact Entity into your applcation model
 """
-class Contact(models.Model):
-    username_name = models.CharField(max_length=60, default='')
-    email = models.CharField(max_length=150, default='')
-    password = models.CharField(max_length=150, default='')
+
 
 class GrupoName(models.Model):
     grupoName= models.CharField(max_length=50, default='')
     terminos = models.CharField(max_length=150, default='')
     media= models.CharField(max_length=150, default='')
-    
+
 class Miembro(models.Model):
     userAccount= models.CharField(max_length=50, default='')
     fecha_nacimiento = models.CharField(max_length=150, default='')
     phone = models.CharField(max_length=150, default='')
     comunidad = models.CharField(max_length=150, default='')
     grupo = models.CharField(max_length=150, default='')
-    user_id = models.ForeignKey(Contact,on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
     grupoid = models.ForeignKey(GrupoName,on_delete=models.CASCADE)
 
 class Anuncio(models.Model):
@@ -78,13 +75,6 @@ class Roles(models.Model):
 The ContactSerializer is where you will specify what properties
 from the ever Contact should be inscuded in the JSON response
 """
-class ContactSerializer(serializers.ModelSerializer):
-
-
-    class Meta:
-        model = Contact
-        # what fields to include?
-        fields = ('first_name','password','email')
 
 class MiembroSerializer(serializers.ModelSerializer):
 
@@ -92,7 +82,7 @@ class MiembroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Miembro
         # what fields to include?
-        fields = ('userAccount','fecha_nacimiento','phone','comunidad','grupo','user_id')
+        fields = ('userAccount','fecha_nacimiento','phone','comunidad','grupo')
 
 class GrupoNametSerializer(serializers.ModelSerializer):
 
