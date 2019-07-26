@@ -13,7 +13,6 @@ class GrupoName(models.Model):
     grupoName= models.CharField(max_length=50, default='')
     terminos = models.CharField(max_length=150, default='')
     media= models.CharField(max_length=150, default='')
-
 class Miembro(models.Model):
     userAccount= models.CharField(max_length=50, default='')
     fecha_nacimiento = models.CharField(max_length=150, default='')
@@ -21,8 +20,7 @@ class Miembro(models.Model):
     comunidad = models.CharField(max_length=150, default='')
     grupo = models.CharField(max_length=150, default='')
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    grupoid = models.ForeignKey(GrupoName,on_delete=models.CASCADE)
-
+    grupoid = models.ForeignKey(GrupoName,on_delete=models.CASCADE, null =True)
 class Anuncio(models.Model):
     anuncioName= models.CharField(max_length=50, default='')
     descripton = models.CharField(max_length=150, default='')
@@ -30,18 +28,15 @@ class Anuncio(models.Model):
     date_anuncio = models.DateField(max_length=150, default='')
     anuncio_nameID = models.ForeignKey(Miembro,on_delete=models.CASCADE)
     ubication = models.CharField(max_length=150, default='')
-
 class Pais(models.Model):
     pais = models.CharField(max_length=50, default='')
     status = models.CharField(max_length=50, default='')
-
 class Region(models.Model):
     region = models.CharField(max_length=50, default='')
     status = models.CharField(max_length=50, default='')
 class Comuna(models.Model):
     comuna = models.CharField(max_length=50, default='')
     status = models.CharField(max_length=50, default='')
-
 class Ubicacion(models.Model):
     name_ubication = models.CharField(max_length=50, default='')
     status = models.CharField(max_length=150, default='')
@@ -49,7 +44,6 @@ class Ubicacion(models.Model):
     region_nameID = models.ForeignKey(Region,on_delete=models.CASCADE)
     comuna_nameID = models.ForeignKey(Comuna,on_delete=models.CASCADE)
     ubication_nameID = models.ForeignKey(Miembro,on_delete=models.CASCADE)
-
 class Evento(models.Model):
     name_event= models.CharField(max_length=50, default='')
     date_event = models.DateField(max_length=150, default='')
@@ -64,11 +58,9 @@ class Votos(models.Model):
     evento_nameID = models.ForeignKey(Evento,on_delete=models.CASCADE)
     date_anuncio = models.DateField(max_length=150, default='')
     votante_id= models.ForeignKey(Miembro,on_delete=models.CASCADE)
-
 class Roles(models.Model):
     name_rol = models.CharField(max_length=50, default='')
     miembro_id= models.ForeignKey(Miembro,on_delete=models.CASCADE)
-
 
 
 """
@@ -82,9 +74,9 @@ class MiembroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Miembro
         # what fields to include?
-        fields = ('userAccount','fecha_nacimiento','phone','comunidad','grupo')
+        fields = ('id', 'userAccount', 'fecha_nacimiento', 'phone', 'comunidad', 'grupo', 'user_id',)
 
-class GrupoNametSerializer(serializers.ModelSerializer):
+class GrupoNameSerializer(serializers.ModelSerializer):
 
 
     class Meta:
@@ -92,7 +84,7 @@ class GrupoNametSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('grupoName','terminos','media')
 
-class EventotSerializer(serializers.ModelSerializer):
+class EventoSerializer(serializers.ModelSerializer):
 
 
     class Meta:
@@ -100,7 +92,7 @@ class EventotSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('name_event','date_event','ubication','cost','event_id','grupo_nameID')
 
-class AnunciotSerializer(serializers.ModelSerializer):
+class AnuncioSerializer(serializers.ModelSerializer):
 
 
     class Meta:
@@ -108,7 +100,7 @@ class AnunciotSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('anuncioName','descripton','media','date_anuncio','anuncio_nameID','ubication')
 
-class PaistSerializer(serializers.ModelSerializer):
+class PaisSerializer(serializers.ModelSerializer):
 
 
     class Meta:
@@ -116,7 +108,7 @@ class PaistSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('pais','status')
 
-class RegiontSerializer(serializers.ModelSerializer):
+class RegionSerializer(serializers.ModelSerializer):
 
 
     class Meta:
@@ -124,7 +116,7 @@ class RegiontSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('region','status')
 
-class ComunatSerializer(serializers.ModelSerializer):
+class ComunaSerializer(serializers.ModelSerializer):
 
 
     class Meta:
@@ -132,7 +124,7 @@ class ComunatSerializer(serializers.ModelSerializer):
         # what fields to include?
         fields = ('comuna','status')
 
-class UbicaciontSerializer(serializers.ModelSerializer):
+class UbicacionSerializer(serializers.ModelSerializer):
 
 
     class Meta:

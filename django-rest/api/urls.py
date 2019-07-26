@@ -12,4 +12,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('miembro/', views.MiembroView.as_view(), name='id-Miembro-usr'),
+    path('grupo/<int:grupoName>', views.GrupoNameView.as_view(), name='id-grupo-usr'),
+   # path('miembro/<int:user_id>', views.MiembroView.as_view()),
 ]
