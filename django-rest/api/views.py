@@ -55,18 +55,19 @@ class GrupoNameView(APIView):
     def post(self, request):
         peo = request.data
         peo['user_id'] = request.user.id
-        serializer = MiembroSerializer(data=peo)
+        serializer = GrupoNameSerializer(data=peo)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #delete no se si es necesario
     def delete(self, request):
-        Miembro.objects.filter(user_id=request.user.id).delete()
+        GrupoName.objects.filter(id=request.GrupoName.id).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     def put(self, request, userAccount):
-        todo = Miembro.objects.filter(user_id=request.user.id, id=request.data['user_id']).first()
-        serializer = MiembroSerializer(Miembro, data=request.data)
+        todo = GrupoName.objects.filter(user_id=request.user.id, id=request.data['user_id']).first()
+        serializer = GrupoNameSerializer(GrupoName, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

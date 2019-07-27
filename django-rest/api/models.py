@@ -82,7 +82,7 @@ class GrupoNameSerializer(serializers.ModelSerializer):
     class Meta:
         model = GrupoName
         # what fields to include?
-        fields = ('grupoName','terminos','media')
+        fields = ('id','grupoName','terminos','media')
 
 class EventoSerializer(serializers.ModelSerializer):
 
