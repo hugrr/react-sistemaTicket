@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import Miembro, MiembroSerializer, GrupoName, GrupoNameSerializer
+from api.models import Miembro, MiembroSerializer, GrupoName, GrupoNameSerializer, Anuncio, AnuncioSerializer
 
 
 from rest_framework.permissions import IsAuthenticated
@@ -65,9 +65,46 @@ class GrupoNameView(APIView):
     def delete(self, request):
         GrupoName.objects.filter(id=request.GrupoName.id).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    #hay que probar bien el put
     def put(self, request, userAccount):
         todo = GrupoName.objects.filter(user_id=request.user.id, id=request.data['user_id']).first()
-        serializer = GrupoNameSerializer(GrupoName, data=request.data)
+        serializer = GrupoNameSerializer(todo, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AnuncioView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request,grupoName = None ):
+        if grupoName is not None:
+            todos = GrupoName.objects.filter(grupoName=grupoName)
+            serializer = GrupoNameSerializer(todos, many=False)
+            return Response(serializer.data)
+        else:
+            todos = Anuncio.objects.all()
+            serializer = AnuncioSerializer(todos, many=True)
+            return Response(serializer.data)
+
+    def post(self, request):
+        peo = request.data
+        peo['anuncio_nameID'] = request.user.id
+        serializer = AnuncioSerializer(data=peo)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #delete no se si es necesario
+    def delete(self, request):
+        Anuncio.objects.filter(id=request.Anuncio.id).delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    #hay que probar bien el put
+    def put(self, request, userAccount):
+        todo = Anuncio.objects.filter(user_id=request.Anuncio.id, id=request.data['user_id']).first()
+        serializer = AnuncioSerializer(todo, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

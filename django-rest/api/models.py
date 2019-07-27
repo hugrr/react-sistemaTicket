@@ -98,7 +98,7 @@ class AnuncioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Anuncio
         # what fields to include?
-        fields = ('anuncioName','descripton','media','date_anuncio','anuncio_nameID','ubication')
+        fields = ('id','anuncioName','descripton','media','date_anuncio','anuncio_nameID','ubication')
 
 class PaisSerializer(serializers.ModelSerializer):
 
