@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import { Notice } from "./views/notice";
 
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
@@ -12,6 +13,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Sidenav } from "./component/Sidenav";
 import { Footer } from "./component/footer";
+import { Modal } from "./component/modal";
 
 //create your first component
 export class Layout extends React.Component {
@@ -27,6 +29,7 @@ export class Layout extends React.Component {
 						<Navbar />
 						<Sidenav />
 						<Switch>
+							<Route exact path="/" component={Notice} />
 							<Route exact path="/" component={Home} />
 							<Route path="/demo" component={Demo} />
 							<Route path="/usuarios" component={Usuarios} />
