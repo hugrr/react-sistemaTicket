@@ -15,8 +15,18 @@ const getState = ({ getStore, setStore }) => {
 			]
 		},
 		actions: {
+			SaveChanges: peo => {
+				if (peo != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(peo);
+			},
+
 			changeColor: (index, color) => {
 				//get the store
+
+				// aplicar fech
 				const store = getStore();
 
 				//we have to loop the entire demo array to look for the respective index

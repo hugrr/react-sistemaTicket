@@ -4,6 +4,24 @@ import { Context } from "../store/appContext";
 
 //create your first component
 export default class Modal extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			texto: ""
+		};
+
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}
+
+	handleInputChange(event) {
+		const target = event.target;
+		const value = target.type === "checkbox" ? target.checked : target.value;
+		const name = target.name;
+		console.log(this.state);
+		this.setState({
+			[name]: value
+		});
+	}
 	render() {
 		return (
 			<Context.Consumer>
@@ -26,13 +44,25 @@ export default class Modal extends React.Component {
 										</button>
 									</div>
 									<div className="modal-body">
-										<textarea className="form-control" rows="5" id="comment" />
+										<textarea
+											name="texto"
+											className="form-control"
+											rows="5"
+											id="comment"
+											onChange={this.handleInputChange}
+										/>
 									</div>
 									<div className="modal-footer">
 										<button type="button" className="btn btn-secondary" data-dismiss="modal">
 											Close
 										</button>
-										<button type="button" className="btn btn-primary">
+										<button
+											type="button"
+											className="btn btn-primary"
+											onClick={() => {
+												actions.SaveChanges(this.state.texto);
+											}}>
+											{" "}
 											Save changes
 										</button>
 									</div>
