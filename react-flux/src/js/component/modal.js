@@ -7,15 +7,13 @@ export default class Modal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			id: "2",
-			anuncioName: "nueva junta",
-			descripton: "hola",
+			descripton: "",
+			avisoName: "",
 			media: "fotoo01",
 			date_anuncio: "2019-07-07",
 			anuncio_nameID: "1",
 			ubication: "hola hola"
 		};
-
 		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
@@ -28,6 +26,7 @@ export default class Modal extends React.Component {
 			[name]: value
 		});
 	}
+
 	render() {
 		return (
 			<Context.Consumer>
@@ -42,17 +41,17 @@ export default class Modal extends React.Component {
 							<div className="modal-dialog" role="document">
 								<div className="modal-content">
 									<div className="modal-header">
-										<h5 className="modal-title" id="exampleModalLongTitle">
-											{" "}
+										<h5texto className="modal-title" id="exampleModalLongTitle">
 											Aviso
-										</h5>
+										</h5texto>
+										<input type="text" name="avisoName" onChange={this.handleInputChange} />
 										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div className="modal-body">
 										<textarea
-											name="texto"
+											name="descripton"
 											className="form-control"
 											rows="5"
 											id="comment"
@@ -67,7 +66,14 @@ export default class Modal extends React.Component {
 											type="button"
 											className="btn btn-primary"
 											onClick={() => {
-												actions.SaveText(this.state.texto);
+												actions.SaveText({
+													descripton: this.state.descripton,
+													avisoName: this.state.avisoName,
+													media: this.state.media,
+													date_anuncio: this.state.date_anuncio,
+													anuncio_nameID: this.state.anuncio_nameID,
+													ubication: this.state.ubication
+												});
 											}}>
 											{" "}
 											Save changes

@@ -13,23 +13,17 @@ const getState = ({ getStore, setStore }) => {
 			]
 		},
 		actions: {
-			SaveText: peo => {
-				if (peo != "") {
+			SaveText: data => {
+				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
 				}
-				console.log(peo);
+				console.log(data);
 
-				fetch("https://3000-ae01abd0-a04f-4f7c-8d59-7f62e413e6fb.ws-us0.gitpod.io/api/anuncio/", {
+				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/anuncio/", {
 					method: "Post",
 					body: JSON.stringify({
-						id: 2,
-						anuncioName: "hola",
-						descripton: peo,
-						media: "fotoo01",
-						date_anuncio: "2019-07-07",
-						anuncio_nameID: 1,
-						ubication: "hola hola"
+						data
 					}),
 					headers: {
 						"Content-Type": "application/json"
