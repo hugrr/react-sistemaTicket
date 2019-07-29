@@ -7,7 +7,13 @@ export default class Modal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			texto: ""
+			id: "2",
+			anuncioName: "nueva junta",
+			descripton: "hola",
+			media: "fotoo01",
+			date_anuncio: "2019-07-07",
+			anuncio_nameID: "1",
+			ubication: "hola hola"
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -37,6 +43,7 @@ export default class Modal extends React.Component {
 								<div className="modal-content">
 									<div className="modal-header">
 										<h5 className="modal-title" id="exampleModalLongTitle">
+											{" "}
 											Aviso
 										</h5>
 										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -60,7 +67,7 @@ export default class Modal extends React.Component {
 											type="button"
 											className="btn btn-primary"
 											onClick={() => {
-												actions.SaveChanges(this.state.texto);
+												actions.SaveText(this.state.texto);
 											}}>
 											{" "}
 											Save changes
