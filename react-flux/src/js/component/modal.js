@@ -12,7 +12,8 @@ export default class Modal extends React.Component {
 			media: "fotoo01",
 			date_anuncio: "2019-07-07",
 			anuncio_nameID: "1",
-			ubication: "hola hola"
+			ubication: "hola hola",
+			enviado: false
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 	}
@@ -41,10 +42,24 @@ export default class Modal extends React.Component {
 							<div className="modal-dialog" role="document">
 								<div className="modal-content">
 									<div className="modal-header">
-										<h5texto className="modal-title" id="exampleModalLongTitle">
-											Aviso
-										</h5texto>
-										<input type="text" name="avisoName" onChange={this.handleInputChange} />
+										<div className="input-group input-group-lg">
+											<div className="input-group-prepend">
+												<span
+													className="input-group-text bg-dark bg-info text-white"
+													id="inputGroup-sizing-lg">
+													Nombre
+												</span>
+											</div>
+											<input
+												type="text"
+												name="avisoName"
+												onChange={this.handleInputChange}
+												classNAme="form-control"
+												aria-label="Sizing example input"
+												aria-describedby="inputGroup-sizing-lg"
+											/>
+										</div>
+
 										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
@@ -59,12 +74,12 @@ export default class Modal extends React.Component {
 										/>
 									</div>
 									<div className="modal-footer">
-										<button type="button" className="btn btn-secondary" data-dismiss="modal">
+										<button type="button" className="btn btn-dark" data-dismiss="modal">
 											Close
 										</button>
 										<button
 											type="button"
-											className="btn btn-primary"
+											className="btn btn-warning"
 											onClick={() => {
 												actions.SaveText({
 													descripton: this.state.descripton,
@@ -74,8 +89,9 @@ export default class Modal extends React.Component {
 													anuncio_nameID: this.state.anuncio_nameID,
 													ubication: this.state.ubication
 												});
-											}}>
-											{" "}
+											}}
+											data-dismiss="modal">
+											{""}
 											Save changes
 										</button>
 									</div>
