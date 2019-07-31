@@ -27,6 +27,7 @@ export class Notice extends React.Component {
 						</button>
 						<Modal />
 					</div>
+					<Anuncio />
 				</div>
 				<div />
 			</div>
