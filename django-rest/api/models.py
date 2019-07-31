@@ -25,7 +25,7 @@ class Anuncio(models.Model):
     anuncioName= models.CharField(max_length=50, default='')
     descripton = models.CharField(max_length=150, default='')
     media = models.CharField(max_length=150, default='')
-    date_anuncio = models.DateField(max_length=150, default='')
+    date_anuncio = models.DateField(max_length=150, default='', null =True)
     anuncio_nameID = models.ForeignKey(Miembro,on_delete=models.CASCADE)
     ubication = models.CharField(max_length=150, default='')
 class Pais(models.Model):

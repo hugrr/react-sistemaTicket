@@ -77,7 +77,7 @@ class GrupoNameView(APIView):
 
 
 class AnuncioView(APIView):
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
     def get(self, request,grupoName = None ):
         if grupoName is not None:
             todos = GrupoName.objects.filter(grupoName=grupoName)
@@ -90,7 +90,7 @@ class AnuncioView(APIView):
 
     def post(self, request):
         peo = request.data
-        peo['anuncio_nameID'] = request.user.id
+        peo['user_id'] = request.user.id
         serializer = AnuncioSerializer(data=peo)
         if serializer.is_valid():
             serializer.save()
