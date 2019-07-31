@@ -10,6 +10,7 @@ import { Grupo } from "./views/grupo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
+import { Anuncio } from "./component/anuncio";
 import { Navbar } from "./component/navbar";
 import { Sidenav } from "./component/Sidenav";
 import { Footer } from "./component/footer";
