@@ -11,6 +11,7 @@ import { Grupo } from "./views/grupo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
+import { ModalForm } from "./component/modalForm";
 import { Anuncio } from "./component/anuncio";
 import { Navbar } from "./component/navbar";
 import { Sidenav } from "./component/Sidenav";

@@ -1,10 +1,25 @@
 import React from "react";
+import FormEvento from "../component/formEvento";
+import ModalForm from "../component/modalForm";
+import Anuncio from "../component/anuncio";
+
 export class Evento extends React.Component {
 	render() {
 		return (
 			<div>
 				<div className="text-center mt-5">
 					<h1>EVENTOS</h1>
+					<button
+						type="button"
+						className="btn btn-primary btn-lg "
+						data-toggle="modal"
+						data-target="#exampleModal1">
+						Crear Evento
+					</button>
+					<ModalForm />
+					<button type="button" className="btn btn-secondary btn-lg">
+						Modificar Evento
+					</button>
 					<table className="table">
 						<thead className="thead-dark">
 							<tr>
