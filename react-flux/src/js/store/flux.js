@@ -1,16 +1,7 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					description: ""
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			aviso: {}
 		},
 		actions: {
 			SaveText: data => {
@@ -32,6 +23,15 @@ const getState = ({ getStore, setStore }) => {
 
 				//reset the global store
 				//setStore({ demo: demo });
+			},
+			SaveText: data => {
+				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/anuncio/")
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						this.setStore({ aviso: data });
+					});
 			}
 		}
 	};
