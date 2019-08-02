@@ -52,6 +52,26 @@ const getState = ({ getStore, setStore }) => {
 
 				//reset the global store
 				//setStore({ demo: demo });
+			},
+			SendToken: data => {
+				if (data != "") {
+				} else {
+					alert("debes ingresar datos");
+				}
+				console.log(data);
+
+				fetch("https://3000-e6f2a864-eb18-4a1d-926a-7b39839dd9bc.ws-us0.gitpod.io/api/token/", {
+					method: "Post",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {});
+
+				//reset the global store
+				//setStore({ demo: demo });
 			}
 		}
 	};

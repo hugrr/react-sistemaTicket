@@ -5,14 +5,8 @@ export class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userAccount: "",
-			mail: "",
-			phone: "",
-			fecha_nacimiento: "",
-			comunidad: "2019--07",
-			user_id: "",
-			password: " ",
-			terminos: true
+			username: "",
+			password: ""
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.formSubmit = this.formSubmit.bind(this);
@@ -43,10 +37,12 @@ export class Login extends Component {
 											<h1 className="h3 mb-3 font-weight-normal">ingresar</h1>
 											<label htmlFor="inputEmail" className="sr-only" />
 											<input
-												type="email"
+												type="text"
+												name="username"
+												onChange={this.handleInputChange}
 												id="inputEmail"
 												className="form-control"
-												placeholder="Correo electronico"
+												placeholder="usuario"
 												required=""
 											/>
 											<label htmlFor="inputPassword" className="sr-only">
@@ -54,7 +50,9 @@ export class Login extends Component {
 											</label>
 											<input
 												type="password"
+												name="password"
 												id="inputPassword"
+												onChange={this.handleInputChange}
 												className="form-control"
 												placeholder="Contraseña"
 												required=""
@@ -65,7 +63,15 @@ export class Login extends Component {
 													<input type="checkbox" value="remember-me" />
 												</label>
 											</div>
-											<button className="btn btn-lg btn-primary btn-block" type="submit">
+											<button
+												className="btn btn-lg btn-primary btn-block"
+												type="submit"
+												onClick={() => {
+													actions.SendToken({
+														username: this.state.username,
+														password: this.state.password
+													});
+												}}>
 												Ingresar
 											</button>
 											<p className="mt-5 mb-3 text-muted">© 2019</p>
