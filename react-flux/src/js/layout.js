@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { Notice } from "./views/notice";
+import { Evento } from "./views/evento";
 
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
@@ -10,6 +11,7 @@ import { Grupo } from "./views/grupo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
+import { ModalForm } from "./component/modalForm";
 import { Anuncio } from "./component/anuncio";
 import { Navbar } from "./component/navbar";
 import { Sidenav } from "./component/Sidenav";
@@ -30,8 +32,8 @@ export class Layout extends React.Component {
 						<Navbar />
 						<Sidenav />
 						<Switch>
-							<Route exact path="/" component={Notice} />
-							<Route exact path="/" component={Home} />
+							<Route exact path="/avisos" component={Notice} />
+							<Route exact path="/eventos" component={Evento} />
 							<Route path="/demo" component={Demo} />
 							<Route path="/usuarios" component={Usuarios} />
 							<Route path="/grupo" component={Grupo} />
