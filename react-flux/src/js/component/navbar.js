@@ -12,16 +12,16 @@ export class Navbar extends React.Component {
 					<Link to="/grupo">
 						<span className="py-2 d-none d-md-inline-block">grupo</span>
 					</Link>
-					<Link to="/">
+					<Link to="/avisos">
 						<span className="py-2 d-none d-md-inline-block">avisos</span>
 					</Link>
-					<Link to="/">
+					<Link to="/eventos">
 						<span className="py-2 d-none d-md-inline-block">eventos</span>
 					</Link>
 					<Link to="/">
 						<span className="py-2 d-none d-md-inline-block">mapas</span>
 					</Link>
-					<Link to="/">
+					<Link to="/mapas">
 						<span className="py-2 d-none d-md-inline-block">votacion</span>
 					</Link>
 				</div>
