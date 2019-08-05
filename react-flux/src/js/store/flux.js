@@ -32,6 +32,16 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => {
 						this.setStore({ aviso: data });
 					});
+			},
+			SaveTextEvento: data => {
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+
+				//reset the global store
+				//setStore({ demo: demo });
 			}
 		}
 	};

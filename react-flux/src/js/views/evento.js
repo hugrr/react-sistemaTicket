@@ -1,5 +1,5 @@
 import React from "react";
-import FormEvento from "../component/formEvento";
+
 import ModalForm from "../component/modalForm";
 import Anuncio from "../component/anuncio";
 
