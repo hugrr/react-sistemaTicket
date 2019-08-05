@@ -13,6 +13,7 @@ urlpatterns = [
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('miembro/', views.MiembroView.as_view(), name='id-Miembro-usr'),
     path('grupo/', views.GrupoNameView.as_view(), name='id-grupo-usr'),
+    path('evento/', views.EventoView.as_view(), name='id-evento-usr'),
     path('anuncio/', views.AnuncioView.as_view(), name='id-grupo-usr'),
    # path('miembro/<int:user_id>', views.MiembroView.as_view()),
 ]
