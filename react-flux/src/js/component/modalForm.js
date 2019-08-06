@@ -1,106 +1,137 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export default class ModalForm extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			name_event: "",
+			date_event: "",
+			cost: "",
+			event_id: 1
+		};
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}
+	handleInputChange(event) {
+		const target = event.target;
+		const value = target.type === "checkbox" ? target.checked : target.value;
+		const name = target.name;
+		console.log(this.state);
+		this.setState({
+			[name]: value
+		});
+	}
+
 	render() {
 		return (
-			<div
-				className="modal fade"
-				id="exampleModal1"
-				tabIndex="-1"
-				role="dialog"
-				aria-labelledby="exampleModalLabel"
-				aria-hidden="true">
-				<div className="modal-dialog" role="document">
-					<div className="modal-content">
-						<div className="modal-header">
-							<h5 className="modal-title" id="exampleModalLabel">
-								Modal title
-							</h5>
-							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+			<Context.Consumer>
+				{({ store, actions }) => {
+					return (
+						<div
+							className="modal fade"
+							id="exampleModal1"
+							tabIndex="-1"
+							role="dialog"
+							aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div className="modal-dialog" role="document">
+								<div className="modal-content">
+									<div className="modal-header">
+										<h5 className="modal-title" id="exampleModalLabel">
+											Crear Evento
+										</h5>
+										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div className="modal-body">
+										<form>
+											<div className="form-row">
+												<div className="form-group col-md-6">
+													<label htmlFor="inputNombre">Nombre</label>
+													<input
+														type="text"
+														name="name_event"
+														onChange={this.handleInputChange}
+														className="form-control"
+														id="inputNombre"
+														placeholder=""
+													/>
+												</div>
+												<div className="form-group">
+													<label htmlFor="inputDireccion">Direccion</label>
+													<input
+														name=""
+														onChange={this.handleInputChange}
+														type="text"
+														className="form-control"
+														id="inputdireccion"
+														placeholder=""
+													/>
+												</div>
+
+												<div />
+											</div>
+
+											<div className="form-row">
+												<div className="form-group col-md-6">
+													{" "}
+													<label htmlFor="inputTime">hora Evento</label>
+													<input
+														type="time"
+														name="usr_time"
+														className="form-control"
+														id="inputTime"
+													/>
+													<label htmlFor="inputDate">Fecha Evento</label>
+													<input
+														id="date"
+														name="date_event"
+														onChange={this.handleInputChange}
+														type="date"
+														className="form-control"
+													/>
+												</div>{" "}
+												<div className="form-group col-md-4">
+													<label htmlFor="inputCity">Costo</label>
+													<input
+														name="cost"
+														onChange={this.handleInputChange}
+														type="text"
+														className="form-control"
+														id="inputCity"
+													/>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div className="modal-footer">
+										<button type="button" className="btn btn-dark" data-dismiss="modal">
+											Close
+										</button>
+										<button
+											className="btn btn-dark"
+											onClick={() => {
+												actions.SaveTextEvento({
+													name_event: this.state.name_event,
+													date_event: this.state.date_event,
+													cost: this.state.cost,
+													event_id: this.state.event_id
+												});
+											}}
+											data-dismiss="modal">
+											{""}
+											Save changes
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div className="modal-body">
-							<form>
-								<div className="form-row">
-									<div className="form-group col-md-6">
-										<label htmlFor="inputEmail4">Email</label>
-										<input
-											type="email"
-											className="form-control"
-											id="inputEmail4"
-											placeholder="Email"
-										/>
-									</div>
-									<div className="form-group col-md-6">
-										<label htmlFor="inputPassword4">Password</label>
-										<input
-											type="password"
-											className="form-control"
-											id="inputPassword4"
-											placeholder="Password"
-										/>
-									</div>
-								</div>
-								<div className="form-group">
-									<label htmlFor="inputAddress">Address</label>
-									<input
-										type="text"
-										className="form-control"
-										id="inputAddress"
-										placeholder="1234 Main St"
-									/>
-								</div>
-								<div className="form-group">
-									<label htmlForr="inputAddress2">Address 2</label>
-									<input
-										type="text"
-										className="form-control"
-										id="inputAddress2"
-										placeholder="Apartment, studio, or floor"
-									/>
-								</div>
-								<div className="form-row">
-									<div className="form-group col-md-6">
-										<label htmlFor="inputCity">City</label>
-										<input type="text" className="form-control" id="inputCity" />
-									</div>
-									<div className="form-group col-md-4">
-										<label htmlFor="inputState">State</label>
-										<select id="inputState" className="form-control">
-											<option selected>Choose...</option>
-											<option>...</option>
-										</select>
-									</div>
-									<div className="form-group col-md-2">
-										<label htmlFor="inputZip">Zip</label>
-										<input type="text" className="form-control" id="inputZip" />
-									</div>
-								</div>
-								<div className="form-group">
-									<div className="form-check">
-										<input className="form-check-input" type="checkbox" id="gridCheck" />
-										<label className="form-check-label" htmlForr="gridCheck">
-											Check me out
-										</label>
-									</div>
-								</div>
-								<button type="submit" className="btn btn-primary">
-									Sign in
-								</button>
-							</form>
-						</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-secondary" data-dismiss="modal">
-								Close
-							</button>
-							<button type="button" className="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
+					);
+				}}
+			</Context.Consumer>
 		);
 	}
 }

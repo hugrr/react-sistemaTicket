@@ -68,6 +68,23 @@ const getState = ({ getStore, setStore }) => {
 						console.log(data);
 						route.push("/usuarios");
 					});
+			},
+			SaveTextEvento: data => {
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/evento/", {
+					method: "Post",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {});
 
 				//reset the global store
 				//setStore({ demo: demo });

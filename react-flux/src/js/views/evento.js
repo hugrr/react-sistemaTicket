@@ -1,5 +1,5 @@
 import React from "react";
-import FormEvento from "../component/formEvento";
+
 import ModalForm from "../component/modalForm";
 import Anuncio from "../component/anuncio";
 
@@ -17,11 +17,9 @@ export class Evento extends React.Component {
 						Crear Evento
 					</button>
 					<ModalForm />
-					<button type="button" className="btn btn-secondary btn-lg">
-						Modificar Evento
-					</button>
-					<table className="table">
-						<thead className="thead-dark">
+
+					<table className="table table-striped table-dark">
+						<thead>
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">First</th>
@@ -34,19 +32,40 @@ export class Evento extends React.Component {
 								<th scope="row">1</th>
 								<td>Mark</td>
 								<td>Otto</td>
-								<td>@mdo</td>
+								<td>
+									<button type="button" className="btn btn-success">
+										<i className="fas fa-eye" />
+									</button>
+									<button type="button" className="btn btn-success">
+										<i className="fas fa-edit" />
+									</button>
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">2</th>
 								<td>Jacob</td>
 								<td>Thornton</td>
-								<td>@fat</td>
+								<td>
+									<button type="button" className="btn btn-success">
+										<i className="fas fa-eye" />
+									</button>
+									<button type="button" className="btn btn-success">
+										<i className="fas fa-edit" />
+									</button>
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">3</th>
 								<td>Larry</td>
 								<td>the Bird</td>
-								<td>@twitter</td>
+								<td>
+									<button type="button" className="btn btn-success">
+										<i className="fas fa-eye" />
+									</button>
+									<button type="button" className="btn btn-success">
+										<i className="fas fa-edit" />
+									</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>
