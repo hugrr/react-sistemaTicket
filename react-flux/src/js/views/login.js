@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
 export class Login extends Component {
 	constructor(props) {
@@ -8,6 +9,7 @@ export class Login extends Component {
 			username: "",
 			password: ""
 		};
+		this.actionsContext = null;
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.formSubmit = this.formSubmit.bind(this);
 	}
@@ -23,11 +25,20 @@ export class Login extends Component {
 	}
 	formSubmit(event) {
 		event.preventDefault();
+		this.actionsContext.SendToken(
+			{
+				username: this.state.username,
+				password: this.state.password
+			},
+			this.props.history
+		);
+		console.log(this.props);
 	}
 	render() {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
+					this.actionsContext = actions;
 					return (
 						<div classNameName="text-center mt-5">
 							<div className="container">
@@ -63,15 +74,7 @@ export class Login extends Component {
 													<input type="checkbox" value="remember-me" />
 												</label>
 											</div>
-											<button
-												className="btn btn-lg btn-primary btn-block"
-												type="submit"
-												onClick={() => {
-													actions.SendToken({
-														username: this.state.username,
-														password: this.state.password
-													});
-												}}>
+											<button className="btn btn-lg btn-primary btn-block" type="submit">
 												Ingresar
 											</button>
 											<p className="mt-5 mb-3 text-muted">© 2019</p>
@@ -86,3 +89,7 @@ export class Login extends Component {
 		);
 	}
 }
+
+Login.propTypes = {
+	history: PropTypes.object
+};
