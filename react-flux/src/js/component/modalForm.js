@@ -108,10 +108,11 @@ export default class ModalForm extends React.Component {
 									</div>
 
 									<div className="modal-footer">
-										<button type="button" className="btn btn-secondary" data-dismiss="modal">
+										<button type="button" className="btn btn-dark" data-dismiss="modal">
 											Close
 										</button>
 										<button
+											className="btn btn-dark"
 											onClick={() => {
 												actions.SaveTextEvento({
 													name_event: this.state.name_event,
