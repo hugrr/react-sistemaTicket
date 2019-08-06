@@ -1,7 +1,10 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			aviso: {}
+			token: {
+				refresh: "",
+				access: ""
+			}
 		},
 		actions: {
 			SaveText: data => {
@@ -24,7 +27,7 @@ const getState = ({ getStore, setStore }) => {
 				//reset the global store
 				//setStore({ demo: demo });
 			},
-<<<<<<< HEAD
+
 			saveUser: data => {
 				if (data != "") {
 				} else {
@@ -32,10 +35,11 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/member/", {
+				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/miembro/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
+						Authorization: "Bearer " + getStore().token.access,
 						"Content-Type": "application/json"
 					}
 				})
@@ -45,14 +49,13 @@ const getState = ({ getStore, setStore }) => {
 				//reset the global store
 				//setStore({ demo: demo });
 			},
-			SendToken: data => {
+			SendToken: (data, route) => {
 				if (data != "") {
 				} else {
 					alert("debes ingresar datos");
 				}
-				console.log(data);
-
-				fetch("https://3000-e6f2a864-eb18-4a1d-926a-7b39839dd9bc.ws-us0.gitpod.io/api/token/", {
+				const store = getStore();
+				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/token/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -60,11 +63,14 @@ const getState = ({ getStore, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(resp => {});
+					.then(data => {
+						setStore({ token: data });
+						console.log(data);
+						route.push("/usuarios");
+					});
 
 				//reset the global store
 				//setStore({ demo: demo });
-
 			}
 		}
 	};

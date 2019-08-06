@@ -6,7 +6,7 @@ export class Usuarios extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userAccount: "",
+			userAccount: "Francisco",
 			mail: "",
 			phone: "",
 			fecha_nacimiento: "",
