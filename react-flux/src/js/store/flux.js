@@ -75,7 +75,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/evento/", {
+				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/evento/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
