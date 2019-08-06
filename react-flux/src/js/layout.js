@@ -31,17 +31,19 @@ export class Layout extends React.Component {
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />
-						<Sidenav />
-						<Switch>
-							<Route exact path="/avisos" component={Notice} />
-							<Route exact path="/eventos" component={Evento} />
-							<Route path="/demo" component={Demo} />
-							<Route path="/usuarios" component={Usuarios} />
-							<Route path="/grupo" component={Grupo} />
-							<Route path="/login" component={Login} />
-							<Route path="/single/:theid" component={Single} />
-							<Route render={() => <h1>Not found!</h1>} />
-						</Switch>
+						<div className="row">
+							<Sidenav className="col-md-2 d-none d-md-block bg-light sidebar" />
+							<Switch className="col-md-10">
+								<Route exact path="/avisos" component={Notice} />
+								<Route exact path="/eventos" component={Evento} />
+								<Route path="/demo" component={Demo} />
+								<Route path="/usuarios" component={Usuarios} />
+								<Route path="/grupo" component={Grupo} />
+								<Route path="/login" component={Login} />
+								<Route path="/single/:theid" component={Single} />
+								<Route render={() => <h1>Not found!</h1>} />
+							</Switch>
+						</div>
 						<Footer />
 					</ScrollToTop>
 				</BrowserRouter>
