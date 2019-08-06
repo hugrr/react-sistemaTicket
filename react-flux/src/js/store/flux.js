@@ -85,6 +85,9 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {});
+
+				//reset the global store
+				//setStore({ demo: demo });
 			}
 		}
 	};
