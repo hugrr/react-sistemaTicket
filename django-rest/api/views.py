@@ -100,7 +100,7 @@ class AnuncioView(APIView):
 
     def post(self, request):
         peo = request.data
-        peo['anuncio_nameID'] = request.user.id
+        peo['user_id'] = request.user.id
         serializer = AnuncioSerializer(data=peo)
         if serializer.is_valid():
             serializer.save()
