@@ -64,16 +64,7 @@ const getState = ({ getStore, setStore }) => {
 
 				//reset the global store
 				//setStore({ demo: demo });
-=======
-			SaveText: data => {
-				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/anuncio/")
-					.then(resp => {
-						return resp.json();
-					})
-					.then(data => {
-						this.setStore({ aviso: data });
-					});
->>>>>>> 14752dada53584610f97d4ae505addc02088d1c4
+
 			}
 		}
 	};
