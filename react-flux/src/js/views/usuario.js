@@ -92,9 +92,6 @@ export class Usuarios extends Component {
 													id="inputPassword"
 													placeholder="Contraseña"
 												/>
-												<button type="button" className="btn btn-primary btn-sm" disabled>
-													modificar
-												</button>
 												<button
 													type="submit"
 													onClick={() => {
@@ -107,7 +104,7 @@ export class Usuarios extends Component {
 														});
 													}}
 													className="btn btn-secondary btn-sm">
-													crear
+													Guardar
 												</button>
 											</div>
 										</form>
