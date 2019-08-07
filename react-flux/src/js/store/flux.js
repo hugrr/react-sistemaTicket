@@ -4,7 +4,8 @@ const getState = ({ getStore, setStore }) => {
 			token: {
 				refresh: "",
 				access: ""
-			}
+			},
+			login: false
 		},
 		actions: {
 			SaveText: data => {
@@ -14,7 +15,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/anuncio/", {
+				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/anuncio/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -35,7 +36,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/miembro/", {
+				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/miembro/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -55,7 +56,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("debes ingresar datos");
 				}
 				const store = getStore();
-				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/token/", {
+				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/token/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -64,7 +65,7 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => {
-						setStore({ token: data });
+						setStore({ token: data, login: true });
 						console.log(data);
 						route.push("/usuarios");
 					});
@@ -75,7 +76,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/evento/", {
+				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/evento/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
