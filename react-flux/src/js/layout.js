@@ -37,7 +37,7 @@ export class Layout extends React.Component {
 									<Sidenav />
 								</div>
 							</div>
-							<div className="col-md-10">
+							<div className="col-md-8">
 								<Switch>
 									<Route exact path="/avisos" component={Notice} />
 									<Route exact path="/eventos" component={Evento} />

@@ -7,7 +7,7 @@ export class Grupo extends Component {
 				<h1>grupo</h1>
 				<div className="container">
 					<div className="row justify-content-md-center">
-						<div className="text-center col-md-4 mb-4">
+						<div className="text-center col-md-6 mb-6">
 							<form>
 								<div className="form-row justify-content-md-center">
 									<label htmlFor="validationDefault01">Nombre del Grupo</label>
@@ -71,7 +71,7 @@ export class Grupo extends Component {
 								</div>
 							</form>
 						</div>
-						<div className="text-center col-md-4 mb-4">
+						<div className="text-center col-md-6 mb-6">
 							<label htmlFor="validationDefaultUsername">grupo</label>
 							<div className="input-group">
 								<div className="input-group-prepend">
