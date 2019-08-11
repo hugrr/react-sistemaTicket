@@ -5,7 +5,12 @@ const getState = ({ getStore, setStore }) => {
 				refresh: "",
 				access: ""
 			},
-			login: false
+			login: false,
+			grupo: {
+				grupoName: "",
+				terminos: "",
+				media: ""
+			}
 		},
 		actions: {
 			SaveText: data => {
@@ -15,7 +20,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/anuncio/", {
+				fetch("http://127.0.0.1:8000/api/anuncio/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -36,7 +41,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/miembro/", {
+				fetch("http://127.0.0.1:8000/api/miembro/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -56,7 +61,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("debes ingresar datos");
 				}
 				const store = getStore();
-				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/token/", {
+				fetch("http://127.0.0.1:8000/api/token/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -76,7 +81,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("https://3000-b9746e44-91c0-49b5-9d41-7cd751927c61.ws-us0.gitpod.io/api/evento/", {
+				fetch("http://127.0.0.1:8000/api/evento/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -86,6 +91,29 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {});
+
+				//reset the global store
+				//setStore({ demo: demo });
+			},
+			GetGroup: data => {
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+
+				fetch("http://127.0.0.1:8000/api/grupo/", {
+					method: "Get",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						setStore({ grupo: data });
+					});
 
 				//reset the global store
 				//setStore({ demo: demo });

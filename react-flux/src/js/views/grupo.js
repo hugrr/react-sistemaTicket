@@ -61,10 +61,6 @@ export class Grupo extends Component {
 											</tr>
 										</tbody>
 									</table>
-
-									<button type="button" className="btn btn-primary btn-sm" disabled>
-										modificar
-									</button>
 									<button type="submit" className="btn btn-secondary btn-sm">
 										crear
 									</button>
@@ -72,25 +68,6 @@ export class Grupo extends Component {
 							</form>
 						</div>
 						<div className="text-center col-md-6 mb-6">
-							<label htmlFor="validationDefaultUsername">grupo</label>
-							<div className="input-group">
-								<div className="input-group-prepend">
-									<span className="input-group-text" id="inputGroupPrepend2">
-										@
-									</span>
-								</div>
-								<input
-									type="text"
-									className="form-control"
-									id="validationDefaultUsername"
-									placeholder="nombre del grupo"
-									aria-describedby="inputGroupPrepend2"
-									required
-								/>
-								<button className="btn btn-primary" type="text">
-									Buscar
-								</button>
-							</div>
 							<label htmlFor="validationDefault02">
 								<h2>Terminos y condiciones</h2>
 							</label>
