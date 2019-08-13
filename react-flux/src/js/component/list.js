@@ -1,14 +1,33 @@
 import React, { Component } from "react";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export class ListaTerminos extends Component {
+	constructor(props) {
+		super(props);
+
+		this.actionsContext = null;
+		this.componentDidMount = this.componentDidMount.bind(this);
+	}
+	componentDidMount() {
+		this.actionsContext.GetGroup(
+			{
+				grupoName: "",
+				terminos: ""
+			},
+			this.props.history
+		);
+		console.log(this.props);
+	}
 	render() {
 		return (
 			<div className="container">
 				<div className="row">
 					<Context.Consumer>
 						{({ store, actions }) => {
+							this.actionsContext = actions;
+							return;
 							store.grupo.map((index, i) => {
 								return (
 									<div className="col-sm-3" key={i}>
@@ -36,3 +55,6 @@ export class ListaTerminos extends Component {
 		);
 	}
 }
+ListaTerminos.propTypes = {
+	history: PropTypes.array
+};
