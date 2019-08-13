@@ -6,11 +6,7 @@ const getState = ({ getStore, setStore }) => {
 				access: ""
 			},
 			login: false,
-			grupo: {
-				grupoName: "",
-				terminos: "",
-				media: ""
-			}
+			grupo: []
 		},
 		actions: {
 			SaveText: data => {
@@ -20,13 +16,16 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("http://127.0.0.1:8000/api/anuncio/", {
-					method: "Post",
-					body: JSON.stringify(data),
-					headers: {
-						"Content-Type": "application/json"
+				fetch(
+					"https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/http://127.0.0.1:8000/api/anuncio/",
+					{
+						method: "Post",
+						body: JSON.stringify(data),
+						headers: {
+							"Content-Type": "application/json"
+						}
 					}
-				})
+				)
 					.then(resp => resp.json())
 					.then(resp => {});
 
@@ -41,7 +40,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("http://127.0.0.1:8000/api/miembro/", {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/miembro/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -61,7 +60,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("debes ingresar datos");
 				}
 				const store = getStore();
-				fetch("http://127.0.0.1:8000/api/token/", {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/token/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -81,7 +80,28 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("http://127.0.0.1:8000/api/evento/", {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/evento/", {
+					method: "Post",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {});
+
+				//reset the global store
+				//setStore({ demo: demo });
+			},
+			saveGrupo: data => {
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/grupo/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -96,23 +116,16 @@ const getState = ({ getStore, setStore }) => {
 				//setStore({ demo: demo });
 			},
 			GetGroup: data => {
-				if (data != "") {
-				} else {
-					alert("INGRESA DATOS");
-				}
-				console.log(data);
-
-				fetch("http://127.0.0.1:8000/api/grupo/", {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/grupo/", {
 					method: "Get",
-					body: JSON.stringify(data),
 					headers: {
-						Authorization: "Bearer " + getStore().token.access,
-						"Content-Type": "application/json"
+						Authorization: "Bearer " + getStore().token.access
 					}
 				})
 					.then(resp => resp.json())
 					.then(resp => {
 						setStore({ grupo: data });
+						console.log(data);
 					});
 
 				//reset the global store
