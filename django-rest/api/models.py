@@ -90,7 +90,7 @@ class EventoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evento
         # what fields to include?
-        fields = ('name_event','date_event','ubication','cost','event_id','grupo_nameID')
+        fields = ('name_event','date_event','cost','event_id','grupo_nameID')
 
 class AnuncioSerializer(serializers.ModelSerializer):
 
