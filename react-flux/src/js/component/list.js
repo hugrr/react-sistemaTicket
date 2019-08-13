@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 export class ListaTerminos extends Component {
 	constructor(props) {
 		super(props);
-
+		this.storeContext = null;
 		this.actionsContext = null;
-		this.componentDidMount = this.componentDidMount.bind(this);
 	}
 	componentDidMount() {
+		console.log("load group", this.storeContext);
 		this.actionsContext.GetGroup(
 			{
 				grupoName: "",
@@ -26,11 +26,12 @@ export class ListaTerminos extends Component {
 				<div className="row">
 					<Context.Consumer>
 						{({ store, actions }) => {
+							this.storeContext = store;
 							this.actionsContext = actions;
-							return;
-							store.grupo.map((index, i) => {
+							console.log("render", store.grupo);
+							const peo = store.grupo.map((index, i) => {
 								return (
-									<div className="col-sm-3" key={i}>
+									<div key={i}>
 										<div className="form-group">
 											<div className="form-check">
 												<input
@@ -48,6 +49,7 @@ export class ListaTerminos extends Component {
 									</div>
 								);
 							});
+							return <>{peo}</>;
 						}}
 					</Context.Consumer>
 				</div>
