@@ -70,9 +70,13 @@ const getState = ({ getStore, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => {
 						setStore({ token: data, login: true });
+						localStorage.setItem("token", data.access);
 						console.log(data);
 						route.push("/usuarios");
 					});
+			},
+			setToken: newToken => {
+				setStore({ token: { access: newToken, refresh: "" }, login: true });
 			},
 			SaveTextEvento: data => {
 				if (data != "") {
@@ -124,8 +128,10 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						setStore({ grupo: data });
-						console.log(data);
+						if (resp && typeof resp === "object" && resp.constructor === Array) {
+							setStore({ grupo: resp });
+							console.log(resp);
+						}
 					});
 
 				//reset the global store

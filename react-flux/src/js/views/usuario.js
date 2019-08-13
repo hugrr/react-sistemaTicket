@@ -150,34 +150,6 @@ export class Usuarios extends Component {
 										<div>
 											<ListaTerminos />
 										</div>
-										<div className="form-group">
-											<div className="form-check">
-												<input
-													className="form-check-input"
-													type="checkbox"
-													value=""
-													id="invalidCheck2"
-													required
-												/>
-												<label className="form-check-label" htmlFor="invalidCheck2">
-													acepto los terminos 2
-												</label>
-											</div>
-										</div>
-										<div className="form-group">
-											<div className="form-check">
-												<input
-													className="form-check-input"
-													type="checkbox"
-													value=""
-													id="invalidCheck2"
-													required
-												/>
-												<label className="form-check-label" htmlFor="invalidCheck2">
-													acepto los terminos 3
-												</label>
-											</div>
-										</div>
 										<button className="btn btn-primary" type="submit">
 											Ingresar
 										</button>
