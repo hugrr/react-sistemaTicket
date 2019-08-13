@@ -4,6 +4,12 @@ const getState = ({ getStore, setStore }) => {
 			token: {
 				refresh: "",
 				access: ""
+			},
+			login: false,
+			grupo: {
+				grupoName: "",
+				terminos: "",
+				media: ""
 			}
 		},
 		actions: {
@@ -14,7 +20,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-d3fb5b3d-a077-40c3-8690-5eb8d6548d50.ws-us0.gitpod.io/api/anuncio/", {
+				fetch("http://127.0.0.1:8000/api/anuncio/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -35,7 +41,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/miembro/", {
+				fetch("http://127.0.0.1:8000/api/miembro/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -55,7 +61,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("debes ingresar datos");
 				}
 				const store = getStore();
-				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/token/", {
+				fetch("http://127.0.0.1:8000/api/token/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -64,7 +70,7 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => {
-						setStore({ token: data });
+						setStore({ token: data, login: true });
 						console.log(data);
 						route.push("/usuarios");
 					});
@@ -75,7 +81,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("https://3000-f215bc17-e637-431a-a459-97a68a68eabc.ws-us0.gitpod.io/api/evento/", {
+				fetch("http://127.0.0.1:8000/api/evento/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -85,6 +91,29 @@ const getState = ({ getStore, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {});
+
+				//reset the global store
+				//setStore({ demo: demo });
+			},
+			GetGroup: data => {
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+
+				fetch("http://127.0.0.1:8000/api/grupo/", {
+					method: "Get",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						setStore({ grupo: data });
+					});
 
 				//reset the global store
 				//setStore({ demo: demo });

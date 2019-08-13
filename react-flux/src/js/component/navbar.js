@@ -4,27 +4,23 @@ import { Link } from "react-router-dom";
 export class Navbar extends React.Component {
 	render() {
 		return (
-			<nav className="navbar navbar-dark bg-dark site-header sticky-top py-1">
-				<div className="container d-flex flex-column flex-md-row justify-content-between">
-					<Link to="/usuarios">
-						<span className="py-2 d-none d-md-inline-block">usuario</span>
-					</Link>
-					<Link to="/grupo">
-						<span className="py-2 d-none d-md-inline-block">grupo</span>
-					</Link>
-					<Link to="/avisos">
-						<span className="py-2 d-none d-md-inline-block">avisos</span>
-					</Link>
-					<Link to="/eventos">
-						<span className="py-2 d-none d-md-inline-block">eventos</span>
-					</Link>
-					<Link to="/">
-						<span className="py-2 d-none d-md-inline-block">mapas</span>
-					</Link>
-					<Link to="/mapas">
-						<span className="py-2 d-none d-md-inline-block">votacion</span>
-					</Link>
-				</div>
+			<nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+				<a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+					<img
+						src="https://i.ibb.co/fkS5Vsr/LIKE-A-CLUB-1.png"
+						width="70"
+						height="70"
+						className="d-inline-block align-top"
+						alt=""
+					/>
+				</a>
+				<ul className="navbar-nav px-3">
+					<li className="nav-item text-nowrap">
+						<a className="nav-link" href="#">
+							Sign out
+						</a>
+					</li>
+				</ul>
 			</nav>
 		);
 	}

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { ListaTerminos } from "../component/list";
 
 export class Usuarios extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+		(this.state = {
 			userAccount: "Francisco",
 			mail: "",
 			phone: "",
@@ -13,8 +14,12 @@ export class Usuarios extends Component {
 			comunidad: "2019--07",
 			user_id: "",
 			password: " ",
-			terminos: true
-		};
+			terminos: true,
+			grupoid: ""
+		}),
+			{
+				grupoName: ""
+			};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.formSubmit = this.formSubmit.bind(this);
 	}
@@ -92,9 +97,6 @@ export class Usuarios extends Component {
 													id="inputPassword"
 													placeholder="Contraseña"
 												/>
-												<button type="button" className="btn btn-primary btn-sm" disabled>
-													modificar
-												</button>
 												<button
 													type="submit"
 													onClick={() => {
@@ -107,7 +109,7 @@ export class Usuarios extends Component {
 														});
 													}}
 													className="btn btn-secondary btn-sm">
-													crear
+													Guardar
 												</button>
 											</div>
 										</form>
@@ -122,32 +124,31 @@ export class Usuarios extends Component {
 											</div>
 											<input
 												type="text"
+												name="grupoName"
+												onChange={this.handleInputChange}
 												className="form-control"
 												id="validationDefaultUsername"
 												placeholder="nombre del grupo"
 												aria-describedby="inputGroupPrepend2"
 												required
 											/>
-											<button className="btn btn-primary" type="text">
+											<button
+												type="submit"
+												onSubmit={this.formSubmit}
+												onClick={() => {
+													actions.GetGroup({
+														grupoName: this.state.grupoName
+													});
+												}}
+												className="btn btn-primary">
 												Buscar
 											</button>
 										</div>
 										<label htmlFor="validationDefault02">
 											<h2>Terminos y condiciones</h2>
 										</label>
-										<div className="form-group">
-											<div className="form-check">
-												<input
-													className="form-check-input"
-													type="checkbox"
-													value=""
-													id="invalidCheck2"
-													required
-												/>
-												<label className="form-check-label" htmlFor="invalidCheck2">
-													map. terminos y condiciones
-												</label>
-											</div>
+										<div>
+											<ListaTerminos />
 										</div>
 										<div className="form-group">
 											<div className="form-check">

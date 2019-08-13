@@ -43,14 +43,14 @@ class Ubicacion(models.Model):
     pais_nameID = models.ForeignKey(Pais,on_delete=models.CASCADE)
     region_nameID = models.ForeignKey(Region,on_delete=models.CASCADE)
     comuna_nameID = models.ForeignKey(Comuna,on_delete=models.CASCADE)
-    ubication_nameID = models.ForeignKey(Miembro,on_delete=models.CASCADE)
+    ubication_nameID = models.ForeignKey(Miembro,on_delete=models.CASCADE )
 class Evento(models.Model):
     name_event= models.CharField(max_length=50, default='')
     date_event = models.DateField(max_length=150, default='')
     cost = models.CharField(max_length=150, default='')
     event_id= models.ForeignKey(Miembro,on_delete=models.CASCADE)
-    grupo_nameID = models.ForeignKey(GrupoName,on_delete=models.CASCADE)
-    ubicationID = models.ForeignKey(Ubicacion,on_delete=models.CASCADE)
+    grupo_nameID = models.ForeignKey(GrupoName,on_delete=models.CASCADE, null =True)
+    ubicationID = models.ForeignKey(Ubicacion,on_delete=models.CASCADE, null =True)
 
 class Votos(models.Model):
     voto = models.CharField(max_length=50, default='')
