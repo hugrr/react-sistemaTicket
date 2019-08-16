@@ -6,11 +6,7 @@ const getState = ({ getStore, setStore }) => {
 				access: ""
 			},
 			login: false,
-			grupo: {
-				grupoName: "",
-				terminos: "",
-				media: ""
-			}
+			grupo: []
 		},
 		actions: {
 			SaveText: data => {
@@ -26,7 +22,7 @@ const getState = ({ getStore, setStore }) => {
 					headers: {
 						"Content-Type": "application/json"
 					}
-				})
+				)
 					.then(resp => resp.json())
 					.then(resp => {});
 
@@ -71,9 +67,13 @@ const getState = ({ getStore, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => {
 						setStore({ token: data, login: true });
+						localStorage.setItem("token", data.access);
 						console.log(data);
 						route.push("/usuarios");
 					});
+			},
+			setToken: newToken => {
+				setStore({ token: { access: newToken, refresh: "" }, login: true });
 			},
 			SaveTextEvento: data => {
 				if (data != "") {
@@ -95,7 +95,7 @@ const getState = ({ getStore, setStore }) => {
 				//reset the global store
 				//setStore({ demo: demo });
 			},
-			GetGroup: data => {
+			saveGrupo: data => {
 				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
@@ -103,7 +103,7 @@ const getState = ({ getStore, setStore }) => {
 				console.log(data);
 
 				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/grupo/", {
-					method: "Get",
+					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
 						Authorization: "Bearer " + getStore().token.access,
@@ -111,8 +111,24 @@ const getState = ({ getStore, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
+					.then(resp => {});
+
+				//reset the global store
+				//setStore({ demo: demo });
+			},
+			GetGroup: data => {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/grupo/", {
+					method: "Get",
+					headers: {
+						Authorization: "Bearer " + getStore().token.access
+					}
+				})
+					.then(resp => resp.json())
 					.then(resp => {
-						setStore({ grupo: data });
+						if (resp && typeof resp === "object" && resp.constructor === Array) {
+							setStore({ grupo: resp });
+							console.log(resp);
+						}
 					});
 
 				//reset the global store
