@@ -16,14 +16,11 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch(
-					"https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/http://127.0.0.1:8000/api/anuncio/",
-					{
-						method: "Post",
-						body: JSON.stringify(data),
-						headers: {
-							"Content-Type": "application/json"
-						}
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/anuncio/", {
+					method: "Post",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
 					}
 				)
 					.then(resp => resp.json())
@@ -84,7 +81,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/evento/", {
+				fetch("hhttps://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/evento/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {

@@ -14,8 +14,8 @@ export class Notice extends React.Component {
 							<div className="text-center col-md-4 mb-4">
 								<div className="card">
 									<img
-										src="https://st2.depositphotos.com/1008939/7972/i/450/depositphotos_79723078-stock-photo-three-friends-drinking-a-glass.jpg"
-										className="card-img-top"
+										src="https://st2.depositphotos.com/1008939/7972/i/450/depositphotos_79723078-stock-photo-three-friends-drinking-a-glass.jpg "
+										className="card-img-top img-raised rounded-circle img-fluid"
 										alt="..."
 									/>
 									<div className="card-body">
