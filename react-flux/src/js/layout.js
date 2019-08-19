@@ -29,6 +29,7 @@ export class Layout extends React.Component {
 		this.storeContext = null;
 		this.actionsContext = null;
 	}
+
 	componentDidMount() {
 		const tempToken = localStorage.getItem("token");
 		if (this.storeContext.login === false && tempToken !== undefined) {
