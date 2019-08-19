@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { ListaTerminos } from "../component/list";
+import { ListaMiembros } from "../component/listmiembros";
 
 export class Grupo extends Component {
 	constructor(props) {
@@ -126,40 +127,9 @@ export class Grupo extends Component {
 												invitar
 											</button>
 										</div>
-										<table className="table table-striped table-sm">
-											<thead>
-												<tr>
-													<th>ID </th>
-													<th>User</th>
-													<th>Mail</th>
-													<th>fecha</th>
-													<th>estado</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>map.user</td>
-													<td>map.mail</td>
-													<td>map.fecha</td>
-													<td>map.estado</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>fco</td>
-													<td>fibadilla@uc.cl</td>
-													<td>22-22-2019</td>
-													<td>activo</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>hugo</td>
-													<td>hugo@gmail.com</td>
-													<td>22-11-2190</td>
-													<td>activo</td>
-												</tr>
-											</tbody>
-										</table>
+										<div>
+											<ListaMiembros />
+										</div>
 									</div>
 								</div>
 							</div>
