@@ -114,7 +114,7 @@ export default class ModalForm extends React.Component {
 										<button
 											className="btn btn-dark"
 											onClick={() => {
-												actions.SaveTextEvento({
+												actions.SaveEvento({
 													name_event: this.state.name_event,
 													date_event: this.state.date_event,
 													cost: this.state.cost,

@@ -81,7 +81,7 @@ export default class Modal extends React.Component {
 											type="button"
 											className="btn btn-warning"
 											onClick={() => {
-												actions.SaveText({
+												actions.SaveAviso({
 													descripton: this.state.descripton,
 													avisoName: this.state.avisoName,
 													media: this.state.media,

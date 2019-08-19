@@ -5,12 +5,12 @@ const getState = ({ getStore, setStore }) => {
 				refresh: "",
 				access: ""
 			},
-			login: false,
+			avisos: [],
 			grupo: [],
 			miembro: []
 		},
 		actions: {
-			SaveText: data => {
+			SaveAviso: data => {
 				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
@@ -21,9 +21,10 @@ const getState = ({ getStore, setStore }) => {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
+						Authorization: "Bearer " + getStore().token.access,
 						"Content-Type": "application/json"
 					}
-				)
+				})
 					.then(resp => resp.json())
 					.then(resp => {});
 
@@ -76,7 +77,7 @@ const getState = ({ getStore, setStore }) => {
 			setToken: newToken => {
 				setStore({ token: { access: newToken, refresh: "" }, login: true });
 			},
-			SaveTextEvento: data => {
+			SaveEvento: data => {
 				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
@@ -144,6 +145,20 @@ const getState = ({ getStore, setStore }) => {
 					.then(resp => {
 						if (resp && typeof resp === "object" && resp.constructor === Array) {
 							setStore({ miembro: resp });
+						}
+					});
+			},
+			GetAviso: () => {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/anuncio/", {
+					method: "Get",
+					headers: {
+						Authorization: "Bearer " + getStore().token.access
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						if (resp && typeof resp === "object" && resp.constructor === Array) {
+							setStore({ avisos: resp });
 						}
 					});
 			}
