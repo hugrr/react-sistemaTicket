@@ -17,8 +17,7 @@ class Miembro(models.Model):
     userAccount= models.CharField(max_length=50, default='')
     fecha_nacimiento = models.CharField(max_length=150, default='')
     phone = models.CharField(max_length=150, default='')
-    comunidad = models.CharField(max_length=150, default='')
-    grupo = models.CharField(max_length=150, default='')
+    mail = models.CharField(max_length=150, default='')
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
     grupoid = models.ForeignKey(GrupoName,on_delete=models.CASCADE, null =True)
 class Anuncio(models.Model):
@@ -74,7 +73,7 @@ class MiembroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Miembro
         # what fields to include?
-        fields = ('id', 'userAccount', 'fecha_nacimiento', 'phone', 'comunidad', 'grupo', 'user_id',)
+        fields = ('id', 'userAccount', 'fecha_nacimiento', 'phone', 'mail', 'user_id', 'grupoid',)
 
 class GrupoNameSerializer(serializers.ModelSerializer):
 
@@ -147,5 +146,35 @@ class RolesSerializer(serializers.ModelSerializer):
         model = Roles
         # what fields to include?
         fields = ('name_rol ','miembro_id')
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    email = serializers.CharField()
+    password = serializers.CharField()
+    rut = serializers.CharField()
+    #first_name = serializers.CharField(required=False, default='')
+    #last_name = serializers.CharField(required=False, default='')
+
+    class Meta:
+        model = User
+        extra_kwargs = {'password': {'write_only': True}}
+        # there what you want to initial.
+        fields = ('id', 'username', 'password', 'email')
+
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        # what fields to include?
+        fields = ('id', 'username', 'password')
 
 
