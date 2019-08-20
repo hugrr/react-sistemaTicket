@@ -79,7 +79,7 @@ export class Usuarios extends React.Component {
 
 											<div className="feature-left animate-box" data-animate-effect="fadeInLeft">
 												<span className="icon">
-													<i className="ti-agenda" />
+													<i className="ti-tablet" />
 												</span>
 												<div className="feature-copy">
 													<h3>Telefono</h3>
