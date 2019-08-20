@@ -5,13 +5,13 @@ const getState = ({ getStore, setStore }) => {
 				refresh: "",
 				access: ""
 			},
-			login: false,
+			avisos: [],
 			grupo: [],
 			miembros: [],
 			miembro: {}
 		},
 		actions: {
-			SaveText: data => {
+			SaveAviso: data => {
 				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
@@ -22,6 +22,7 @@ const getState = ({ getStore, setStore }) => {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
+						Authorization: "Bearer " + getStore().token.access,
 						"Content-Type": "application/json"
 					}
 				})
@@ -77,7 +78,7 @@ const getState = ({ getStore, setStore }) => {
 			setToken: newToken => {
 				setStore({ token: { access: newToken, refresh: "" }, login: true });
 			},
-			SaveTextEvento: data => {
+			SaveEvento: data => {
 				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
@@ -149,8 +150,23 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			GetUser: () => {
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/miembro/", {
-					method: "GET",
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/profile", {
+					method: "Get",
+					headers: {
+						Authorization: "Bearer " + getStore().token.access
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						if (resp && typeof resp === "object" && resp.constructor === Object) {
+							setStore({ miembros: resp });
+						}
+					});
+			},
+
+			GetAviso: () => {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/anuncio/", {
+					method: "Get",
 					headers: {
 						Authorization: "Bearer " + getStore().token.access
 					}
@@ -158,7 +174,8 @@ const getState = ({ getStore, setStore }) => {
 					.then(resp => resp.json())
 					.then(resp => {
 						if (resp && typeof resp === "object" && resp.constructor === Array) {
-							setStore({ miembros: resp });
+
+							setStore({ avisos: resp });
 						}
 					});
 			}

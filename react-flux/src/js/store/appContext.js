@@ -29,6 +29,7 @@ const injectContext = PassedComponent => {
 			 **/
 			this.state.actions.GetProfile();
 			this.state.actions.GetUser();
+
 		}
 
 		render() {
