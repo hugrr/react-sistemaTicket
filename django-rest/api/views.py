@@ -14,11 +14,15 @@ The ContactsView will contain the logic on how to:
 class MiembroView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request):
-       # userid = 1
-        todos = Miembro.objects.filter(user_id=request.user.id).first()
-        serializer = MiembroSerializer(todos, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request, user_id=None):
+        if user_id is not None:
+            todos = Miembro.objects.filter(user_id=request.user.id).first()
+            serializer = MiembroSerializer(todos, many=False)
+            return Response(serializer.data)
+        else:
+            todos = miembro.objects.all()
+            serializer = MiembroSerializer(todos, many=True)
+            return Response(serializer.data)    
 
     def post(self, request):
         peo = request.data
