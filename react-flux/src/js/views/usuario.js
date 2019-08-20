@@ -2,37 +2,21 @@ import React, { Component } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { ListaTerminos } from "../component/list";
+import PropTypes from "prop-types";
+import ModalUser from "../component/modaluser";
 
 export class Usuarios extends Component {
 	constructor(props) {
 		super(props);
-		(this.state = {
-			userAccount: "Francisco",
-			mail: "",
-			phone: "",
-			fecha_nacimiento: "",
-			comunidad: "2019--07",
-			user_id: "",
-			password: " ",
-			terminos: true,
-			grupoid: ""
-		}),
-			{
-				grupoName: ""
-			};
-		this.handleInputChange = this.handleInputChange.bind(this);
+		this.storeContext = null;
+		this.actionsContext = null;
+
 		this.formSubmit = this.formSubmit.bind(this);
 	}
-
-	handleInputChange(event) {
-		const target = event.target;
-		const value = target.type === "checkbox" ? target.checked : target.value;
-		const name = target.name;
-		console.log(this.state);
-		this.setState({
-			[name]: value
-		});
+	componentDidMount() {
+		this.actionsContext.GetProfile();
 	}
+
 	formSubmit(event) {
 		event.preventDefault();
 	}
@@ -40,6 +24,8 @@ export class Usuarios extends Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
+					this.storeContext = store;
+					this.actionsContext = actions;
 					return (
 						<div className="text-center mt-5">
 							<h1>usuario</h1>
@@ -52,23 +38,19 @@ export class Usuarios extends Component {
 												<input
 													type="text"
 													name="userAccount"
-													onChange={this.handleInputChange}
 													className="form-control"
 													id="validationDefault01"
 													placeholder="First name"
-													value="Francisco"
-													required
+													value={store.miembro.userAccount}
 												/>
 												<label htmlFor="validationDefault02">Email</label>
 												<input
 													type="email"
 													name="mail"
-													onChange={this.handleInputChange}
 													className="form-control"
 													id="validationDefault02"
 													placeholder="Email"
-													value="usuario@usuario.com"
-													required
+													value={store.miembro.mail}
 												/>
 												<label htmlFor="validationDefault02">telefono</label>
 												<input
@@ -78,15 +60,15 @@ export class Usuarios extends Component {
 													className="form-control"
 													id="validationDefault02"
 													placeholder="+569 6666 6666"
+													value={store.miembro.phone}
 												/>
 												<label htmlFor="validationDefault02">Fecha de Nacimiento</label>
 												<input
-													type="text"
+													id="date"
 													name="fecha_nacimiento"
 													onChange={this.handleInputChange}
+													type="date"
 													className="form-control"
-													id="validationDefault02"
-													placeholder="26/03/2019"
 												/>
 												<label htmlFor="validationDefault02">Contraseña</label>
 												<input
@@ -97,20 +79,15 @@ export class Usuarios extends Component {
 													id="inputPassword"
 													placeholder="Contraseña"
 												/>
+
 												<button
-													type="submit"
-													onClick={() => {
-														actions.saveUser({
-															userAccount: this.state.userAccount,
-															mail: this.state.mail,
-															phone: this.state.phone,
-															fecha_nacimiento: this.state.fecha_nacimiento,
-															password: this.state.password
-														});
-													}}
-													className="btn btn-secondary btn-sm">
-													Guardar
+													type="button"
+													className="btn btn-primary"
+													data-toggle="modal"
+													data-target="#exampleModal2">
+													modificar usuario
 												</button>
+												<ModalUser />
 											</div>
 										</form>
 									</div>
@@ -163,3 +140,6 @@ export class Usuarios extends Component {
 		);
 	}
 }
+Usuarios.propTypes = {
+	history: PropTypes.array
+};

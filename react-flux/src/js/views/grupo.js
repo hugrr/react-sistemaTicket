@@ -47,7 +47,6 @@ export class Grupo extends Component {
 													className="form-control"
 													id="validationDefault01"
 													placeholder="name group"
-													value="grupo"
 													required
 												/>
 												<label htmlFor="validationDefault02">

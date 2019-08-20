@@ -5,9 +5,11 @@ const getState = ({ getStore, setStore }) => {
 				refresh: "",
 				access: ""
 			},
+			login: "",
 			avisos: [],
 			grupo: [],
-			miembro: []
+			miembros: [],
+			miembro: {}
 		},
 		actions: {
 			SaveAviso: data => {
@@ -41,7 +43,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/miembro/", {
+				fetch("https://3000-b47668b8-e8af-4230-a765-0fbd9d1240c6.ws-us0.gitpod.io/api/miembro/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -85,7 +87,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				fetch("hhttps://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/evento/", {
+				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/evento/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -107,7 +109,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/grupo/", {
+				fetch("https://3000-b47668b8-e8af-4230-a765-0fbd9d1240c6.ws-us0.gitpod.io/api/grupo/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -122,7 +124,7 @@ const getState = ({ getStore, setStore }) => {
 				//setStore({ demo: demo });
 			},
 			GetGroup: data => {
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/grupo/", {
+				fetch("https://3000-b47668b8-e8af-4230-a765-0fbd9d1240c6.ws-us0.gitpod.io/api/grupo/", {
 					method: "Get",
 					headers: {
 						Authorization: "Bearer " + getStore().token.access
@@ -136,8 +138,22 @@ const getState = ({ getStore, setStore }) => {
 						}
 					});
 			},
-			GetUser: data => {
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/miembro/", {
+			GetProfile: () => {
+				fetch("https://3000-b47668b8-e8af-4230-a765-0fbd9d1240c6.ws-us0.gitpod.io/api/profile", {
+					method: "Get",
+					headers: {
+						Authorization: "Bearer " + getStore().token.access
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						if (resp && typeof resp === "object" && resp.constructor === Object) {
+							setStore({ miembro: resp });
+						}
+					});
+			},
+			GetUser: () => {
+				fetch("https://3000-b47668b8-e8af-4230-a765-0fbd9d1240c6.ws-us0.gitpod.io/api/profile", {
 					method: "Get",
 					headers: {
 						Authorization: "Bearer " + getStore().token.access
@@ -146,10 +162,11 @@ const getState = ({ getStore, setStore }) => {
 					.then(resp => resp.json())
 					.then(resp => {
 						if (resp && typeof resp === "object" && resp.constructor === Array) {
-							setStore({ miembro: resp });
+							setStore({ miembros: resp });
 						}
 					});
 			},
+
 			GetAviso: () => {
 				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/anuncio/", {
 					method: "Get",

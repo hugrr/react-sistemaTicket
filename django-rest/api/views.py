@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import Miembro, MiembroSerializer, GrupoName, GrupoNameSerializer,Anuncio,AnuncioSerializer,Evento,EventoSerializer
+from api.models import Miembro, MiembroSerializer, GrupoName, GrupoNameSerializer, Anuncio, AnuncioSerializer, Evento, EventoSerializer, UserCreateSerializer
 
 
 from rest_framework.permissions import IsAuthenticated
@@ -11,14 +11,27 @@ The ContactsView will contain the logic on how to:
 """
 
 
+class ProfileView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, user_id=None):
+        todos = Miembro.objects.get(user_id=request.user.id)
+        serializer = MiembroSerializer(todos, many=False)
+        return Response(serializer.data)
+
+
 class MiembroView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request):
-       # userid = 1
-        todos = Miembro.objects.filter(user_id=request.user.id).first()
-        serializer = MiembroSerializer(todos, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request, user_id=None):
+        if user_id is not None:
+            todos = Miembro.objects.filter(user_id=request.user.id).first()
+            serializer = MiembroSerializer(todos, many=False)
+            return Response(serializer.data)
+        else:
+            todos = Miembro.objects.all()
+            serializer = MiembroSerializer(todos, many=True)
+            return Response(serializer.data)
 
     def post(self, request):
         peo = request.data
@@ -124,6 +137,7 @@ class AnuncioView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class EventoView(APIView):
     permission_classes = (IsAuthenticated,)
 
@@ -160,5 +174,15 @@ class EventoView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Registro(APIView):
+    def post(self, request):
+        serializer = UserCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
