@@ -17,7 +17,7 @@ const getState = ({ getStore, setStore }) => {
 				}
 				console.log(data);
 
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/anuncio/", {
+				fetch("https://3000-e85855c4-1fac-4e5f-bbdb-814be26f18d5.ws-us0.gitpod.io/api/anuncio/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -26,7 +26,9 @@ const getState = ({ getStore, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(resp => {});
+					.then(resp => {
+						this.state.action.GetAviso();
+					});
 
 				//reset the global store
 				//setStore({ demo: demo });
@@ -59,7 +61,7 @@ const getState = ({ getStore, setStore }) => {
 					alert("debes ingresar datos");
 				}
 				const store = getStore();
-				fetch("https://3000-d1e49d54-45d0-450d-ac1b-f04c3c707f9d.ws-us0.gitpod.io/api/token/", {
+				fetch("https://3000-e85855c4-1fac-4e5f-bbdb-814be26f18d5.ws-us0.gitpod.io/api/token/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
