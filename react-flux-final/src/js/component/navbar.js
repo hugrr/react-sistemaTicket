@@ -17,33 +17,32 @@ export class Navbar extends React.Component {
 						<div className="col-xs-8 text-right menu-1">
 							<ul>
 								<li>
-									<a href="features.html">Features</a>
+									<Link to="/usuarios">Mi cuenta</Link>
 								</li>
 								<li>
-									<a href="tour.html">Tour</a>
+									<Link to="/anuncios">Anuncios</Link>
 								</li>
 								<li className="has-dropdown">
-									<a href="#">Dropdown</a>
+									<a href="#">Eventos</a>
 									<ul className="dropdown">
 										<li>
-											<a href="#">Web Design</a>
+											<a href="#">Ver Eventos</a>
 										</li>
 										<li>
-											<a href="#">eCommerce</a>
-										</li>
-										<li>
-											<a href="#">Branding</a>
-										</li>
-										<li>
-											<a href="#">API</a>
+											<a href="#">Crear Evento</a>
 										</li>
 									</ul>
 								</li>
-								<li>
-									<a href="pricing.html">Pricing</a>
-								</li>
-								<li>
-									<a href="contact.html">Contact</a>
+								<li className="has-dropdown">
+									<a href="#">Grupo</a>
+									<ul className="dropdown">
+										<li>
+											<a href="#">Ver Grupo</a>
+										</li>
+										<li>
+											<a href="#">Crear Grupo</a>
+										</li>
+									</ul>
 								</li>
 								<li className="btn-cta">
 									<a href="#">

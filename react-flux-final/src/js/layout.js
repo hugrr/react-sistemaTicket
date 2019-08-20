@@ -4,7 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import injectContext from "./store/appContext";
-
+import { Usuarios } from "./views/user";
+import { Anuncio } from "./views/anuncio";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -22,6 +23,8 @@ export class Layout extends React.Component {
 						<Navbar />
 						<Switch>
 							<Route exact path="/" component={Home} />
+							<Route path="/usuarios" component={Usuarios} />
+							<Route path="/anuncios" component={Anuncio} />
 							<Route render={() => <h1>Not found!</h1>} />
 						</Switch>
 						<Footer />
