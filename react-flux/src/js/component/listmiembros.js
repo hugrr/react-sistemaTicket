@@ -11,20 +11,7 @@ export class ListaMiembros extends Component {
 	}
 	componentDidMount() {
 		console.log("load group", this.storeContext);
-		this.actionsContext.GetUser(
-			{
-				userAccount: "",
-				mail: "",
-				phone: "",
-				fecha_nacimiento: "",
-				comunidad: "",
-				user_id: "",
-				password: " ",
-				terminos: true,
-				grupoid: ""
-			},
-			this.props.history
-		);
+		this.actionsContext.GetUser({}, this.props.history);
 		console.log(this.props);
 	}
 	render() {
@@ -56,7 +43,6 @@ export class ListaMiembros extends Component {
 									</tr>
 								);
 							});
-							console.log("hola", peo2);
 							return <>{peo2}</>;
 						}}
 					</Context.Consumer>

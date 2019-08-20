@@ -14,6 +14,7 @@ const injectContext = PassedComponent => {
 			//this will be passed as the contenxt value
 			this.state = getState({
 				getStore: () => this.state.store,
+				getActions: () => this.state.actions,
 				setStore: updatedStore =>
 					this.setState({
 						store: Object.assign(this.state.store, updatedStore)
@@ -27,8 +28,6 @@ const injectContext = PassedComponent => {
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
 			 * you should do your ajax requests or fetch api requests here
 			 **/
-			this.state.actions.GetProfile();
-			this.state.actions.GetUser();
 		}
 
 		render() {
