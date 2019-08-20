@@ -150,9 +150,6 @@ class RolesSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(serializers.ModelSerializer):
     email = serializers.CharField()
     password = serializers.CharField()
-    rut = serializers.CharField()
-    #first_name = serializers.CharField(required=False, default='')
-    #last_name = serializers.CharField(required=False, default='')
 
     class Meta:
         model = User
