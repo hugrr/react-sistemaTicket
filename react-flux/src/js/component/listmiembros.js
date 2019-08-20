@@ -13,11 +13,11 @@ export class ListaMiembros extends Component {
 		console.log("load group", this.storeContext);
 		this.actionsContext.GetUser(
 			{
-				userAccount: "Francisco",
+				userAccount: "",
 				mail: "",
 				phone: "",
 				fecha_nacimiento: "",
-				comunidad: "2019--07",
+				comunidad: "",
 				user_id: "",
 				password: " ",
 				terminos: true,
@@ -36,7 +36,7 @@ export class ListaMiembros extends Component {
 						<th>User</th>
 						<th>Mail</th>
 						<th>fecha</th>
-						<th>estado</th>
+						<th>telefono</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,18 +44,19 @@ export class ListaMiembros extends Component {
 						{({ store, actions }) => {
 							this.storeContext = store;
 							this.actionsContext = actions;
-							const peo2 = store.miembro.map((item, i) => {
+							console.log("render", store.miembros);
+							const peo2 = store.miembros.map((item, i) => {
 								return (
 									<tr key={i}>
 										<td>{item.id}</td>
 										<td>{item.userAccount}</td>
 										<td>{item.mail}</td>
-										<td>{item.userAccount}</td>
-										<td>{item.userAccount}</td>
+										<td>{item.fecha_nacimiento}</td>
+										<td>{item.phone}</td>
 									</tr>
 								);
 							});
-							console.log(peo2);
+							console.log("hola", peo2);
 							return <>{peo2}</>;
 						}}
 					</Context.Consumer>
@@ -65,5 +66,5 @@ export class ListaMiembros extends Component {
 	}
 }
 ListaMiembros.propTypes = {
-	history: PropTypes.object
+	history: PropTypes.array
 };
