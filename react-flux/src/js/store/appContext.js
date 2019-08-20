@@ -27,6 +27,8 @@ const injectContext = PassedComponent => {
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
 			 * you should do your ajax requests or fetch api requests here
 			 **/
+			this.state.actions.GetProfile();
+			this.state.actions.GetUser();
 		}
 
 		render() {

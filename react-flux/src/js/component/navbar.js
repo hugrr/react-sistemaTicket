@@ -14,13 +14,15 @@ export class Navbar extends React.Component {
 						alt=""
 					/>
 				</a>
-				<ul className="navbar-nav px-3">
-					<li className="nav-item text-nowrap">
-						<a className="nav-link" href="#">
-							Sign out
-						</a>
-					</li>
-				</ul>
+				<Link to="/login">
+					<ul className="navbar-nav px-3">
+						<li className="nav-item text-nowrap">
+							<a className="nav-link" href="#">
+								Sign out
+							</a>
+						</li>
+					</ul>
+				</Link>
 			</nav>
 		);
 	}
