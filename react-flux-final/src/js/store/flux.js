@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			apiUrl: "",
+			apiUrl: "https://3000-e85855c4-1fac-4e5f-bbdb-814be26f18d5.ws-us0.gitpod.io/",
 			token: {
 				refresh: "",
 				access: ""
@@ -99,6 +99,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => setStore({ grupos: data }));
+			},
+			SaveAviso: data => {
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+
+				fetch(store.apiUrl + "/api/anuncio", {
+					method: "Post",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						this.state.action.GetAviso();
+					});
+
+				//reset the global store
+				//setStore({ demo: demo });
 			}
 		}
 	};
