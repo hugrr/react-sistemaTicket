@@ -23,6 +23,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[name]: value
 				});
 			},
+
+			handleMiembro: e => {
+				const { name, value } = e.target;
+				const store = getStore();
+				let miembro = store.miembro;
+				miembro[name] = value;
+				setStore({
+					miembro
+				});
+			},
+
 			handleLogin: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
@@ -32,6 +43,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				e.preventDefault();
 				const store = getStore();
 				getActions().register(store.username, store.email, store.password);
+			},
+			handleUser: (e, history) => {
+				e.preventDefault();
+				getActions().putMiembro(history);
 			},
 			login: (username, password, history) => {
 				const store = getStore();
@@ -109,7 +124,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => setStore({ miembro: data }));
+					.then(data => {
+						setStore({ miembro: data });
+						console.log(data);
+					});
+			},
+			putMiembro: history => {
+				const store = getStore();
+				const data = store.miembro;
+
+				fetch(store.apiUrl + "/api/profile/", {
+					method: "PUT",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + store.token.access
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({ miembro: data });
+						alert("Tus datos se actualizaron");
+						history.push("/usuarios");
+					});
 			},
 			getGrupos: () => {
 				const store = getStore();

@@ -6,6 +6,7 @@ import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 import { Usuarios } from "./views/user";
 import { Anuncio } from "./views/anuncio";
+import { modificarUsuario } from "./views/modprofile";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Context } from "./store/appContext";
@@ -31,6 +32,7 @@ export class Layout extends React.Component {
 										<Route exact path="/" component={Home} />
 										<Route path="/usuarios" component={Usuarios} />
 										<Route path="/anuncios" component={Anuncio} />
+										<Route path="/modprofile" component={modificarUsuario} />
 										<Route render={() => <h1>Not found!</h1>} />
 									</Switch>
 									<Footer />
