@@ -8,7 +8,7 @@ export default class ModalAviso extends React.Component {
 		super(props);
 		this.state = {
 			descripton: "",
-			avisoName: "",
+			anuncioName: "",
 			media: "fotoo01",
 			date_anuncio: "2019-07-07",
 			anuncio_nameID: "1",
@@ -49,7 +49,7 @@ export default class ModalAviso extends React.Component {
 
 											<input
 												type="text"
-												name="avisoName"
+												name="anuncioName"
 												onChange={this.handleInputChange}
 												classNAme="form-control"
 												aria-label="Sizing example input"
@@ -82,7 +82,7 @@ export default class ModalAviso extends React.Component {
 											onClick={() => {
 												actions.SaveAviso({
 													descripton: this.state.descripton,
-													avisoName: this.state.avisoName,
+													anuncioName: this.state.anuncioName,
 													media: this.state.media,
 													date_anuncio: this.state.date_anuncio,
 													anuncio_nameID: this.state.anuncio_nameID,

@@ -19,11 +19,9 @@ export class Anuncio extends React.Component {
 									<div className="row">
 										<div className="col-md-12 col-md-offset-0 text-left">
 											<div className="row row-mt-15em">
-												<div
-													className="col-md-7 mt-text animate-box"
-													data-animate-effect="fadeInUp">
-													<span className="intro-text-small">Enterate de todo</span>
-													<h1>Avisos </h1>
+												<div className="col-md-7 mt-text ">
+													<span className="intro-text-small">Enterate de todo!</span>
+													<h1>Avisos</h1>
 												</div>
 											</div>
 										</div>
@@ -33,15 +31,15 @@ export class Anuncio extends React.Component {
 							<div id="gtco-features" className="border-bottom">
 								<div className="gtco-container">
 									<div className="row">
-										<div className="col-md-8 col-md-offset-2 text-center gtco-heading animate-box">
-											<h2>Noticias</h2>
+										<div className="col-md-8 col-md-offset-2 text-center gtco-heading ">
+											<h2>Avisos</h2>
 											<p>
 												La comunicacion debe ser fluida, mantente siempre al dia con la
 												informacion de tu grupo
 											</p>
 											<button
 												type="button"
-												className="btn btn-primary btn-lg "
+												className="btn btn-primary btn-lg"
 												data-toggle="modal"
 												data-target="#exampleModalLong">
 												Crear
@@ -53,21 +51,20 @@ export class Anuncio extends React.Component {
 											store.avisos.map((item, i) => {
 												return (
 													<div key={i} className="col-md-3 col-sm-6">
-														<div
-															className="feature-center animate-box"
-															data-animate-effect="fadeIn">
+														<div className="feature-center">
 															<span className="icon">
 																<i className="ti-announcement" />
 															</span>
+
 															<h3>{item.anuncioName}</h3>
+
 															<p>{item.descripton} </p>
 														</div>
 													</div>
 												);
 											})}
-
-										<ModalAviso />
 									</div>
+									<ModalAviso />
 								</div>
 							</div>
 						</Fragment>

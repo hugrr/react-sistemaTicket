@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export default class ModalForm extends React.Component {
+export default class ModalEvento extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

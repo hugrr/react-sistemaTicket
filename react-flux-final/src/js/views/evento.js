@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Context } from "../store/appContext";
-import ModalAviso from "../component/modalAviso";
 
 export class Evento extends React.Component {
 	render() {

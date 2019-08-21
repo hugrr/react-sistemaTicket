@@ -1,14 +1,14 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			apiUrl: "https://3000-ae181a3c-8a6a-4525-b8c5-d32b2883f34f.ws-us0.gitpod.io/",
+			apiUrl: "https://3000-ae181a3c-8a6a-4525-b8c5-d32b2883f34f.ws-us0.gitpod.io",
 			token: {
 				refresh: "",
 				access: ""
 			},
 			avisos: [],
 			grupos: [],
-			eventos: [],
+			evento: [],
 			miembros: [],
 			miembro: {},
 			username: "",
@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getAvisos: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/avisos", {
+				fetch(store.apiUrl + "/api/anuncios/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -90,7 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getEvento: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/evento", {
+				fetch(store.apiUrl + "/api/eventos/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -127,7 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getGrupos: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/grupos", {
+				fetch(store.apiUrl + "/api/grupos/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -145,7 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				console.log(data);
 
-				fetch(store.apiUrl + "/api/anuncio", {
+				fetch(store.apiUrl + "/api/anuncios/", {
 					method: "Post",
 					body: JSON.stringify(data),
 					headers: {
@@ -155,7 +155,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						getActions().GetAviso();
+						getActions().getAvisos();
 					});
 
 				//reset the global store
@@ -168,7 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("INGRESA DATOS");
 				}
 				console.log(data);
-				let url = store.apiUrl + "/api/anuncio";
+				let url = store.apiUrl + "/api/eventos/";
 
 				fetch(url, {
 					method: "POST",
@@ -180,7 +180,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						getActions().GetEvento();
+						getActions().getEvento();
 					});
 
 				//reset the global store
