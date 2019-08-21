@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			username: "",
 			password: "",
 			password2: "",
+			email: "",
 			error: {}
 		},
 		actions: {
@@ -23,33 +24,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[name]: value
 				});
 			},
-			handleLogin: e => {
+			handleLogin: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
-				getActions().login(store.username, store.password);
+				getActions().login(store.username, store.password, history);
 			},
 			handleRegister: e => {
 				e.preventDefault();
+				const store = getStore();
+				getActions().register(store.username, store.email, store.password);
 			},
-			login: (username, password) => {
+			login: (username, password, history) => {
 				const store = getStore();
 				const data = {
 					username: username,
 					password: password
 				};
-				fetch(store.apiUrl + "/api/token", {
-					method: "GET",
+				fetch(store.apiUrl + "/api/token/", {
+					method: "POST",
 					body: JSON.stringify(data),
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => setStore({ data }));
+					.then(data => {
+						setStore({ token: data, username: "", password: "" });
+
+						history.push("/usuarios");
+					});
 			},
-			register: (username, password) => {
-				console.log(username);
-				console.log(password);
+			register: (username, email, password) => {
+				const store = getStore();
+				const data = {
+					username: username,
+					email: email,
+					password: password,
+					password2: password2
+				};
+				fetch(store.apiUrl + "/api/registro/", {
+					method: "POST",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({ token: data, username: "", email: "", password: "", password2: "" });
+						alert("ya puedes iniciar sesion");
+					});
 			},
 			getAvisos: () => {
 				const store = getStore();
@@ -91,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getMiembro: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/miembro", {
+				fetch(store.apiUrl + "/api/profile/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
