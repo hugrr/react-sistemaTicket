@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
 export class Home extends React.Component {
+	constructor(props) {
+		super(props);
+		this.props.history;
+	}
 	render() {
 		return (
 			<Context.Consumer>
@@ -68,6 +73,21 @@ export class Home extends React.Component {
 																		</div>
 																		<div className="row form-group">
 																			<div className="col-md-12">
+																				<label htmlFor="email">Email</label>
+																				<input
+																					type="email"
+																					className="form-control"
+																					name="email"
+																					id="email"
+																					value={store.email}
+																					onChange={e =>
+																						actions.handleChange(e)
+																					}
+																				/>
+																			</div>
+																		</div>
+																		<div className="row form-group">
+																			<div className="col-md-12">
 																				<label htmlFor="password">
 																					Contraseña
 																				</label>
@@ -86,7 +106,7 @@ export class Home extends React.Component {
 																		<div className="row form-group">
 																			<div className="col-md-12">
 																				<label htmlFor="password2">
-																					Repita la Contraseña Password
+																					Confirmar Contraseña
 																				</label>
 																				<input
 																					type="password"
@@ -116,7 +136,9 @@ export class Home extends React.Component {
 																<div className="tab-content-inner" data-content="login">
 																	<form
 																		action="#"
-																		onSubmit={e => actions.handleLogin(e)}>
+																		onSubmit={e =>
+																			actions.handleLogin(e, this.props.history)
+																		}>
 																		<div className="row form-group">
 																			<div className="col-md-12">
 																				<label htmlFor="username">
@@ -602,3 +624,6 @@ export class Home extends React.Component {
 		);
 	}
 }
+Home.propTypes = {
+	history: PropTypes.object
+};
