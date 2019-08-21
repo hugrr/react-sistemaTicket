@@ -2,10 +2,20 @@ import React, { Fragment } from "react";
 import { Context } from "../store/appContext";
 
 export class Usuarios extends React.Component {
+	constructor(props) {
+		super(props);
+		this.storeContext = null;
+		this.actionsContext = null;
+	}
+	componentDidMount() {
+		this.actionsContext.getMiembro();
+	}
 	render() {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
+					this.storeContext = store;
+					this.actionsContext = actions;
 					return (
 						<Fragment>
 							<header
@@ -18,11 +28,12 @@ export class Usuarios extends React.Component {
 									<div className="row">
 										<div className="col-md-12 col-md-offset-0 text-left">
 											<div className="row row-mt-15em">
-												<div
-													className="col-md-7 mt-text animate-box"
-													data-animate-effect="fadeInUp">
+												<div className="col-md-7 mt-text">
 													<span className="intro-text-small">Bienvenido</span>
-													<h1>Francisco acountuser</h1>
+													<h1>
+														{store.username}
+														Francisco acountuser
+													</h1>
 												</div>
 											</div>
 										</div>
@@ -47,27 +58,30 @@ export class Usuarios extends React.Component {
 											/>
 										</div>
 										<div className="col-md-6 mt-sm">
-											<div className="feature-left animate-box" data-animate-effect="fadeInLeft">
+											<div className="feature-left">
 												<span className="icon">
 													<i className="ti-user" />
 												</span>
 												<div className="feature-copy">
 													<h3>Nombre</h3>
-													<p>usuario fbadilla</p>
+													<p>{store.miembro.userAccount} fbadilla</p>
 												</div>
 											</div>
 
-											<div className="feature-left animate-box" data-animate-effect="fadeInLeft">
+											<div className="feature-left">
 												<span className="icon">
 													<i className="ti-email" />
 												</span>
 												<div className="feature-copy">
 													<h3>Correo</h3>
-													<p>Tucorreo@correo.cl</p>
+													<p>
+														{store.miembro.mail}
+														Tucorreo@correo.cl
+													</p>
 												</div>
 											</div>
 
-											<div className="feature-left animate-box" data-animate-effect="fadeInLeft">
+											<div className="feature-left ">
 												<span className="icon">
 													<i className="ti-calendar" />
 												</span>
@@ -77,23 +91,29 @@ export class Usuarios extends React.Component {
 												</div>
 											</div>
 
-											<div className="feature-left animate-box" data-animate-effect="fadeInLeft">
+											<div className="feature-left">
 												<span className="icon">
 													<i className="ti-tablet" />
 												</span>
 												<div className="feature-copy">
 													<h3>Telefono</h3>
-													<p>+569 6666 6666</p>
+													<p>
+														{store.miembro.phone}
+														+569 6666 6666
+													</p>
 												</div>
 											</div>
 
-											<div className="feature-left animate-box" data-animate-effect="fadeInLeft">
+											<div className="feature-left">
 												<span className="icon">
 													<i className="ti-bolt" />
 												</span>
 												<div className="feature-copy">
 													<h3>Mi Grupo</h3>
-													<p>club 666</p>
+													<p>
+														{store.grupos.grupoName}
+														club 666
+													</p>
 												</div>
 											</div>
 										</div>
