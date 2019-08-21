@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			avisos: [],
 			grupos: [],
+			evento: [],
 			miembros: [],
 			miembro: {},
 			username: "",
@@ -91,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getAvisos: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/avisos", {
+				fetch(store.apiUrl + "/api/anuncios/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -100,6 +101,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => setStore({ avisos: data }))
+					.catch(error => setStore({ error }));
+			},
+			getEvento: () => {
+				const store = getStore();
+				fetch(store.apiUrl + "/api/eventos/", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + store.token.access
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => setStore({ evento: data }))
 					.catch(error => setStore({ error }));
 			},
 			getMiembros: () => {
@@ -150,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getGrupos: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/grupos", {
+				fetch(store.apiUrl + "/api/grupos/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -159,6 +173,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => setStore({ grupos: data }));
+			},
+			SaveAviso: data => {
+				const store = getStore();
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+
+				fetch(store.apiUrl + "/api/anuncios/", {
+					method: "Post",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						getActions().getAvisos();
+					});
+
+				//reset the global store
+				//setStore({ demo: demo });
+			},
+			SaveEvento: data => {
+				const store = getStore();
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+				let url = store.apiUrl + "/api/eventos/";
+
+				fetch(url, {
+					method: "POST",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						getActions().getEvento();
+					});
+
+				//reset the global store
+				//setStore({ demo: demo });
 			}
 		}
 	};

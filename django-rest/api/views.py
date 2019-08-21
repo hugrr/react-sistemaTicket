@@ -15,7 +15,7 @@ class ProfileView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, user_id=None):
-        todos = Miembro.objects.get(user_id=request.user.id)
+        todos = Miembro.objects.filter(user_id=request.user.id).first()
         serializer = MiembroSerializer(todos, many=False)
         return Response(serializer.data)
 
@@ -23,15 +23,10 @@ class ProfileView(APIView):
 class MiembroView(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self, request, user_id=None):
-        if user_id is not None:
-            todos = Miembro.objects.filter(user_id=request.user.id).first()
-            serializer = MiembroSerializer(todos, many=False)
-            return Response(serializer.data)
-        else:
-            todos = Miembro.objects.all()
-            serializer = MiembroSerializer(todos, many=True)
-            return Response(serializer.data)
+    def get(self, request,):
+        todos = Miembro.objects.all()
+        serializer = MiembroSerializer(todos, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
         peo = request.data

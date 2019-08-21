@@ -26,10 +26,10 @@ export class Navbar extends React.Component {
 									<a href="#">Eventos</a>
 									<ul className="dropdown">
 										<li>
-											<a href="#">Ver Eventos</a>
+											<Link to="/eventos">Ver Eventos</Link>
 										</li>
 										<li>
-											<a href="#">Crear Evento</a>
+											<Link to="/crearEvento">Crear Evento</Link>
 										</li>
 									</ul>
 								</li>

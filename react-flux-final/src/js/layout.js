@@ -6,9 +6,17 @@ import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 import { Usuarios } from "./views/user";
 import { Anuncio } from "./views/anuncio";
+<<<<<<< HEAD
 import { modificarUsuario } from "./views/modprofile";
+=======
+import { CrearEvento } from "./views/crearEvento";
+import { Evento } from "./views/evento";
+>>>>>>> 8bf8ca08c6bd2790b622fa4da473490a20a6c067
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+
+import { ModalEvento } from "./component/modalEvento";
+
 import { Context } from "./store/appContext";
 
 //create your first component
@@ -33,6 +41,8 @@ export class Layout extends React.Component {
 										<Route path="/usuarios" component={Usuarios} />
 										<Route path="/anuncios" component={Anuncio} />
 										<Route path="/modprofile" component={modificarUsuario} />
+										<Route path="/crearEvento" component={CrearEvento} />
+										<Route path="/eventos" component={Evento} />
 										<Route render={() => <h1>Not found!</h1>} />
 									</Switch>
 									<Footer />
