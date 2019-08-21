@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			apiUrl: "https://3000-e85855c4-1fac-4e5f-bbdb-814be26f18d5.ws-us0.gitpod.io/",
+			apiUrl: "https://3000-ae181a3c-8a6a-4525-b8c5-d32b2883f34f.ws-us0.gitpod.io/",
 			token: {
 				refresh: "",
 				access: ""
@@ -64,6 +64,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ avisos: data }))
 					.catch(error => setStore({ error }));
 			},
+			getEvento: () => {
+				const store = getStore();
+				fetch(store.apiUrl + "/api/evento", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + store.token.access
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => setStore({ evento: data }))
+					.catch(error => setStore({ error }));
+			},
 			getMiembros: () => {
 				const store = getStore();
 				fetch(store.apiUrl + "/api/miembros", {
@@ -101,6 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ grupos: data }));
 			},
 			SaveAviso: data => {
+				const store = getStore();
 				if (data != "") {
 				} else {
 					alert("INGRESA DATOS");
@@ -117,7 +131,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						this.state.action.GetAviso();
+						getActions().GetAviso();
+					});
+
+				//reset the global store
+				//setStore({ demo: demo });
+			},
+			SaveEvento: data => {
+				const store = getStore();
+				if (data != "") {
+				} else {
+					alert("INGRESA DATOS");
+				}
+				console.log(data);
+				let url = store.apiUrl + "/api/anuncio";
+
+				fetch(url, {
+					method: "POST",
+					body: JSON.stringify(data),
+					headers: {
+						Authorization: "Bearer " + getStore().token.access,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						getActions().GetEvento();
 					});
 
 				//reset the global store

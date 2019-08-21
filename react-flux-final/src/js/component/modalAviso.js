@@ -44,12 +44,9 @@ export default class ModalAviso extends React.Component {
 									<div className="modal-header">
 										<div className="input-group input-group-lg">
 											<div className="input-group-prepend">
-												<span
-													className="input-group-text bg-dark bg-info text-white"
-													id="inputGroup-sizing-lg">
-													Nombre
-												</span>
+												<label>Nombre</label>
 											</div>
+
 											<input
 												type="text"
 												name="avisoName"
@@ -60,11 +57,13 @@ export default class ModalAviso extends React.Component {
 											/>
 										</div>
 
+										<div />
 										<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div className="modal-body">
+										<label>Descripcion</label>
 										<textarea
 											name="descripton"
 											className="form-control"
@@ -74,12 +73,12 @@ export default class ModalAviso extends React.Component {
 										/>
 									</div>
 									<div className="modal-footer">
-										<button type="button" className="btn btn-dark" data-dismiss="modal">
+										<button type="button" className="btn btn-primary btn-lg" data-dismiss="modal">
 											Close
 										</button>
 										<button
 											type="button"
-											className="btn btn-warning"
+											className="btn btn-primary btn-lg"
 											onClick={() => {
 												actions.SaveAviso({
 													descripton: this.state.descripton,
