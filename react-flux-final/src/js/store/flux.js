@@ -101,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getMiembro: () => {
 				const store = getStore();
-				fetch(store.apiUrl + "/api/miembro", {
+				fetch(store.apiUrl + "/api/profile/", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
