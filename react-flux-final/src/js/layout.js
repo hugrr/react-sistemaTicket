@@ -6,12 +6,9 @@ import { Home } from "./views/home";
 import injectContext from "./store/appContext";
 import { Usuarios } from "./views/user";
 import { Anuncio } from "./views/anuncio";
-<<<<<<< HEAD
 import { modificarUsuario } from "./views/modprofile";
-=======
 import { CrearEvento } from "./views/crearEvento";
 import { Evento } from "./views/evento";
->>>>>>> 8bf8ca08c6bd2790b622fa4da473490a20a6c067
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
