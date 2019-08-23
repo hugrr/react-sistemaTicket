@@ -10,7 +10,7 @@ Define he Contact Entity into your applcation model
 
 
 class GrupoName(models.Model):
-    grupoName= models.CharField(max_length=50, default='')
+    grupoName= models.CharField(max_length=50)
     terminos = models.CharField(max_length=150, default='')
     media= models.CharField(max_length=150, default='')
 class Miembro(models.Model):
@@ -18,8 +18,8 @@ class Miembro(models.Model):
     fecha_nacimiento = models.CharField(max_length=150, default='')
     phone = models.CharField(max_length=150, default='')
     mail = models.CharField(max_length=150, default='')
-    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    grupoid = models.ForeignKey(GrupoName,on_delete=models.CASCADE, null =True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    gruponame = models.ForeignKey('GrupoName', on_delete=models.CASCADE, null=True, related_name='gruponame',)
 class Anuncio(models.Model):
     anuncioName= models.CharField(max_length=50, default='')
     descripton = models.CharField(max_length=150, default='')
@@ -76,12 +76,12 @@ class GrupoNameSerializer(serializers.ModelSerializer):
 
 
 class MiembroSerializer(serializers.ModelSerializer):
-    grupoName = GrupoNameSerializer(many=False, read_only=True)
+    gruponame = GrupoNameSerializer(many=False, read_only=True),
 
     class Meta:
         model = Miembro
         # what fields to include?
-        fields = ('id', 'userAccount', 'fecha_nacimiento', 'phone', 'mail', 'user_id', 'grupoid', 'grupoName')
+        fields = ('id', 'userAccount', 'fecha_nacimiento', 'phone', 'mail', 'user_id', 'gruponame',)
 
 class EventoSerializer(serializers.ModelSerializer):
 
