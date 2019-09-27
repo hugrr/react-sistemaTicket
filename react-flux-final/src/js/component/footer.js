@@ -5,8 +5,9 @@ export const Footer = () => (
 		<div className="row ">
 			<div className="col-md-12">
 				<p className="pull-left">
-					<small className="block">&copy; 2019 by Hugrr|Fbadilla. All Rights Reserved.</small>
-					<small className="block" />
+					<small className="block">&copy; 2019 by Hugrr All Rights Reserved.</small>
+					<br />
+					<small className="block"> Diseñado para postulaciaon HC Partner(Sáltala) </small>
 				</p>
 				<p className="pull-right">
 					<ul className="gtco-social-icons pull-right">

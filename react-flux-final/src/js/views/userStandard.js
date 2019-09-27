@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
 
-export class Usuarios extends React.Component {
+export class UserStandard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.storeContext = null;
@@ -32,8 +32,8 @@ export class Usuarios extends React.Component {
 										<div className="col-md-12 col-md-offset-0 text-left">
 											<div className="row row-mt-15em">
 												<div className="col-md-7 mt-text">
-													<span className="intro-text-small">Bienvenido</span>
-													<h1>{store.miembro.userAccount}</h1>
+													<span className="intro-text-small">Bienvenido...</span>
+													<h1>Usuario Estandar</h1>
 												</div>
 											</div>
 										</div>
@@ -44,13 +44,13 @@ export class Usuarios extends React.Component {
 								<div className="gtco-container">
 									<div className="row">
 										<div className="col-md-8 text-left gtco-heading">
-											<h2>Mis Datos</h2>
-											<p>Estos son tus datos registrados</p>
+											<h2> Mi Cuenta</h2>
+											<p> Mis ticket Asignados</p>
 											<div className="form-group">
-												<Link to="/modprofile">
+												<Link to="/getTicket">
 													<input
 														type="submit"
-														value="Modificar cuenta"
+														value="Visualizar"
 														className="btn btn-primary"
 													/>
 												</Link>
@@ -87,37 +87,6 @@ export class Usuarios extends React.Component {
 													<div className="feature-copy">
 														<h3>Correo</h3>
 														<p>{store.miembro.mail}</p>
-													</div>
-												</div>
-
-												<div className="feature-left ">
-													<span className="icon">
-														<i className="ti-calendar" />
-													</span>
-													<div className="feature-copy">
-														<h3>Fecha de nacimiento</h3>
-														<p>{store.miembro.fecha_nacimiento}</p>
-													</div>
-												</div>
-
-												<div className="feature-left">
-													<span className="icon">
-														<i className="ti-tablet" />
-													</span>
-													<div className="feature-copy">
-														<h3>Telefono</h3>
-														+569
-														<p>{store.miembro.phone}</p>
-													</div>
-												</div>
-
-												<div className="feature-left">
-													<span className="icon">
-														<i className="ti-bolt" />
-													</span>
-													<div className="feature-copy">
-														<h3>Mi Grupo</h3>
-														<p>{store.miembro.grupoName}</p>
 													</div>
 												</div>
 											</div>
