@@ -184,7 +184,7 @@ export class SendTicket extends React.Component {
 															</div>
 														</div>
 													</div>
-													<div className="form-group">
+													<div className="form-group text-center">
 														<input
 															type="submit"
 															value="enviar"
